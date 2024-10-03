@@ -26,7 +26,7 @@ textarea {
     height: 4em;
 }
 
-#learning-title,#learning-date {
+#learning-title,#learning-date-start,#learning-date-end {
     background-color: #22aaa1;
     width: 50%;
     border: 1px;

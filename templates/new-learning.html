@@ -44,14 +44,16 @@
         <div class="main-block">
             <div class="form-block">
                 <h1>Добавление обучения</h1>
-                <form action="" class="new-learning-form">
+                <form action="/new_learning" class="new-learning-form" method="POST" enctype="multipart/form-data">
                     <p>Название</p>
-                    <input type="text" name="learning-title" id="learning-title" placeholder="Название">
-                    <p>Текст обучения</p>
-                    <textarea name="learning-text" id="learning-text" placeholder="Текст обучения"></textarea>
-                    <p>Дата</p>
-                    <input type="date" name="learning-date" id="learning-date">
-                    <input type="file" name="image" id="learning-image">
+                    <input type="text" name="learning-title" id="learning-title" placeholder="Название" required>
+                    <p>Текст события</p>
+                    <textarea name="learning-text" id="learning-text" placeholder="Текст события" required></textarea>
+                    <p>Дата начала</p>
+                    <input type="date" name="learning-date-start" id="learning-date-start" required>
+                    <p>Дата окончания</p>
+                    <input type="date" name="learning-date-end" id="learning-date-end" required>
+                    <input type="file" name="image" id="learning-image" accept=".png,.jpg" required>
                     <input type="submit" value="Добавить" id="add-learning">
                 </form>
                 <script>

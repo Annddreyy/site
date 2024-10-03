@@ -67,9 +67,6 @@ def new_news_page():
 
         file = request.files['image']
 
-        if file.filename == '':
-            return 'Файл не выбран'
-
         if file.filename.endswith('.jpg') or file.filename.endswith('.png'):
             image_path = file.filename
             file.save('static/company_files/news_images/' + image_path)
@@ -106,9 +103,6 @@ def new_event_page():
         image_path = ''
 
         file = request.files['image']
-
-        if file.filename == '':
-            return 'Файл не выбран'
 
         if file.filename.endswith('.jpg') or file.filename.endswith('.png'):
             image_path = file.filename

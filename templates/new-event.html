@@ -47,20 +47,22 @@
                 <h1>Добавление события</h1>
                 <form action="/new_event" class="new-event-form" method="POST" enctype="multipart/form-data">
                     <p>Название</p>
-                    <input type="text" name="event-title" id="event-title" placeholder="Название">
+                    <input type="text" name="event-title" id="event-title" placeholder="Название" required>
                     <p>Текст события</p>
-                    <textarea name="event-text" id="event-text" placeholder="Текст события"></textarea>
+                    <textarea name="event-text" id="event-text" placeholder="Текст события" required></textarea>
                     <p>Дата начала</p>
-                    <input type="date" name="event-date-start" id="event-date-start">
+                    <input type="date" name="event-date-start" id="event-date-start" required>
                     <p>Дата окончания</p>
-                    <input type="date" name="event-date-end" id="event-date-end">
+                    <input type="date" name="event-date-end" id="event-date-end" required>
                     <p>Тип мероприятия</p>
-                    <select name="event-type" id="event-type">
+                    <select name="event-type" id="event-type" required>
                         {% for event_type in event_types: %}
-                            <option value="{{event_type[0]}}">{{event_type[1]}}</option>
+                            {% if event_type[1] != "Обучение": %}
+                                <option value="{{event_type[0]}}">{{event_type[1]}}</option>
+                            {% endif %}
                         {% endfor %}
                     </select>
-                    <input type="file" name="image" id="event-image" accept=".png,.jpg">
+                    <input type="file" name="image" id="event-image" accept=".png,.jpg" required>
                     <input type="submit" value="Добавить" id="add-event">
                 </form>
                 <script>
@@ -85,8 +87,8 @@
             <div class="search-bar">
                 <img src="{{ url_for('static', filename='images/search.png') }}" id="toggle-select">
                 <form action="/new_event" class="search-form" method="GET">
-                    <input type="text" name="news-search" required>
-                    <select name="sort-type" id="sort-type-select" required>
+                    <input type="text" name="news-search">
+                    <select name="sort-type" id="sort-type-select">
                         <option value="title">По названию</option>
                         <option value="date">По дате</option>
                         <option value="author">По автору</option>
