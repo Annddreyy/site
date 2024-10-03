@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{event[1]}}</title>
+    <link rel="icon" href="static/images/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/navigation-buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/data-pages.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/commands-list.css') }}">
+    <script src="{{ url_for('static', filename='scripts/commands-list.js') }}"></script>
+</head>
+<body>
+    <header role="banner">
+        <div class="left-info">
+            <div class="logo-image">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" onclick="location.href='/';">
+            </div>
+            <div class="page-title">><span>События</span></div>
+        </div>
+        <div class="right-info">
+            <div class="user">Пучков А. И.</div>
+            <div class="user-photo">
+                <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="" onclick="myFunction()" class="dropbtn">
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="/user-profile">Профиль</a>
+                  <a href="#">Выйти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main role="main">
+        <div class="nav-buttons">
+            <a href="/">Главная</a>
+            <a href="/personal">Управление персоналом</a>
+            <a href="/new_news">Добавить новость</a>
+            <a href="/new_event">Добавить событие</a>
+            <a href="/new_learning">Добавить обучение</a>
+        </div>
+        <div class="main-block">
+            <div class="information-block">
+                <h1>{{event[1]}}</h1>
+                <img src="{{ url_for('static', filename='company_files/' + event[3]) }}" class="image">
+                <p style="margin-top: 1em;">{{event[2]}}</p>
+            </div>
+        </div>
+        <div class="news-block">
+            <div class="search-bar">
+                <img src="{{ url_for('static', filename='images/search.png') }}" id="toggle-select">
+                <form action="/events/{{event[0]}}" class="search-form" method="GET">
+                    <input type="text" name="news-search">
+                    <select name="sort-type" id="sort-type-select">
+                        <option value="title">По названию</option>
+                        <option value="date">По дате</option>
+                        <option value="author">По автору</option>
+                    </select>
+                    <input type="submit" hidden style="height: 0%;"/>
+                </form>
+                <img src="{{ url_for('static', filename='images/find-icon.png') }}" alt="">
+            </div>
+            <script>
+                const img = document.getElementById('toggle-select');
+                const select = document.getElementById('sort-type-select');
+                img.addEventListener('click', () => {
+                    if (select.style.display === 'none') {
+                         select.style.display = 'block';
+                    } else {
+                         select.style.display = 'none';
+                    }
+                });
+            </script>
+            <div class="news">
+                {% for news in all_news: %}
+                    <div onclick="location.href='/news/{{news[0]}}';" class="one-news">
+                        <img src="{{ url_for('static', filename='company_files/' + news[5]) }}" class="one-news-image">
+                        <div class="news-title">
+                            <p>{{news[1]}}</p>
+                        </div>
+                        <div class="news-text">
+                            <p>{{news[2]}}</p>
+                        </div>
+                        <div class="bottom-part">
+                            <div class="news-date">
+                                <img src="{{ url_for('static', filename='images/calendar.png') }}">
+                                <span>{{news[3]}}</span>
+                            </div>
+                            <div class="news-author">
+                                <img src="{{ url_for('static', filename='company_files/' + news[6]) }}" class="user-img">
+                                <span>{{news[4]}}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+    <footer role="contentinfo">
+        <div class="top-information">
+            <span>☎ +7(999)999-99-99</span>
+            <span><img src="{{ url_for('static', filename='images/place-icon.png') }}" class="place-icon-image">Москва, ул. Измайлова, д. 31</span>
+            <div class="footer-icons">
+                <img src="{{ url_for('static', filename='images/telegram-icon.png') }}" onclick="location.href='https://web.telegram.org';">
+                <img src="{{ url_for('static', filename='images/vk-icon.png') }}" onclick="location.href='https://vk.com/feed';">
+            </div>
+        </div>
+        <div class="bottom-information">
+            © Все права защищены "ГК Дороги России" 2024 г.
+        </div>
+    </footer>
+</body>
+</html>

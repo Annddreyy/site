@@ -1,0 +1,38 @@
+@font-face {
+	font-family: 'CodecPro'; 
+	src: url(../fonts/CodecPro/CodecPro-Light.ttf); 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'CodecPro';
+}
+
+body {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: white;
+    background-color: #438f72;
+}
+
+
+main {
+    display: grid;
+    grid-template-columns: 1.5fr 6fr 3fr;
+    grid-template-rows: 1fr;
+}
+
+::placeholder {
+    color: rgb(48, 48, 48);
+}
+
+@media(max-width: 700px) {
+    main {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 1fr;
+    }
+}

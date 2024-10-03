@@ -1,0 +1,59 @@
+.form-block {
+    margin-top: 1em;
+}
+
+.edit-profile-form {
+    margin-top: 1em;
+}
+
+#user-image {
+    width: 7em;
+    border-radius: 50%;
+    display: block;
+}
+
+#image-file {
+    background-color: #136f63;
+    border-radius: 4px;
+}
+
+input {
+    background-color: #22aaa1;
+    border: 1px;
+    font-size: 16px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding: 0.5em;
+    border-radius: 8px;
+    width: 50%;
+    display: block;
+}
+
+.edit-profile-form>p {
+    font-size: 16px;
+}
+
+#edit-profile-button {
+    background-color: #136f63;
+    color: white;
+    width: max-content;
+}
+
+@media(max-width: 700px) {
+    .form-block {
+        margin-left: 1em;
+        margin-top: 1em;
+    }
+    h1 {
+        font-size: 18px;
+    }
+    #image-file {
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 400px) {
+    #image-file {
+        font-size: 12px;
+    }
+}

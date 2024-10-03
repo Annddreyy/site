@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пучков А. И.</title>
+    <link rel="icon" href="static/images/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/navigation-buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/commands-list.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/user-profile.css') }}">
+    <script src="{{ url_for('static', filename='scripts/commands-list.js') }}"></script>
+</head>
+<body>
+    <header role="banner">
+        <div class="left-info">
+            <div class="logo-image">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" onclick="location.href='/';">
+            </div>
+            <div class="page-title">><span>Профиль</span></div>
+        </div>
+        <div class="right-info">
+            <div class="user">Пучков А. И.</div>
+            <div class="user-photo">
+                <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="" onclick="myFunction()" class="dropbtn">
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="/user-profile">Профиль</a>
+                  <a href="#">Выйти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main role="main">
+        <div class="nav-buttons">
+            <a href="/">Главная</a>
+            <a href="/personal">Управление персоналом</a>
+            <a href="/new_news">Добавить новость</a>
+            <a href="/new_event">Добавить событие</a>
+            <a href="/new_learning">Добавить обучение</a>
+        </div>
+        <div class="main-block">
+            <div class="form-block">
+                <h1>Редактирование профиля</h1>
+                <form action="" class="edit-profile-form" onkeypress="return event.keyCode != 13;">
+                    <p>Фото</p>
+                    <input type="image" src="static/images/user.jpg" id="user-image">
+                    <input type="file" name="user-image-file" id="image-file" style="width: min-content;">
+                    <p>Фамилия</p>
+                    <input type="text" name="surname" id="surname" placeholder="Пучков" tabindex="1">
+                    <p>Имя</p>
+                    <input type="text" name="name" id="name" placeholder="Андрей" tabindex="2">
+                    <p>Отчество</p>
+                    <input type="text" name="patronymic" id="patronymic" placeholder="Игоревич">
+                    <p>Адресс проживания</p>
+                    <input type="text" name="adress" id="adress" placeholder="г. Пенза, ул. Антонова">
+                    <p>Телефон</p>
+                    <input type="text" name="phone" id="phone" placeholder="+7(999)999-99-99" pattern="\+\d\(\d{3}\)\d{3}-\d{2}-\d{2}">
+                    <p>Email</p>
+                    <input type="text" name="email" id="email" placeholder="mail@mail.ru" pattern="\w+@\w+\.\w+">
+                    <input type="submit" value="Сохранить изменения" id="edit-profile-button">
+                </form>
+                <script>
+                    document.querySelectorAll('.edit-profile-form input').forEach((input) => {
+                        input.addEventListener('keypress', (e) => {
+                            if (e.key === 'Enter') {
+                                const index = Array.from(document.querySelectorAll('.edit-profile-form input')).indexOf(input);
+                                document.querySelectorAll('.edit-profile-form input')[index + 1].focus();
+                            }
+                        });
+                    });
+                </script>
+            </div>
+        </div>
+    </main>
+    <footer role="contentinfo">
+        <div class="top-information">
+            <span>☎ +7(999)999-99-99</span>
+            <span><img src="static/images/place-icon.png" class="place-icon-image">Москва, ул. Измайлова, д. 31</span>
+            <div class="footer-icons">
+                <img src="static/images/telegram-icon.png" onclick="location.href='https://web.telegram.org';">
+                <img src="static/images/vk-icon.png" onclick="location.href='https://vk.com/feed';">
+            </div>
+        </div>
+        <div class="bottom-information">
+            © Все права защищены "ГК Дороги России" 2024 г.
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+.top-part-of-search-block {
+    display: flex;
+}
+
+.calendar {
+    margin-left: 1em
+}
+
+.select-form {
+    background-color: #22aaa1;
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 8px;
+}
+
+.select-form>p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.select-form>select {
+    background-color: #136f63;
+    padding: 0.5em;
+    color: white;
+    border: 1px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.select-form>select>option {
+    background-color: #178678;
+    padding: 0.5em;
+    color: white;
+    border: 1px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.select-form>select:hover {
+    background-color: #1b9c8b;
+}
+
+.select-form>input {
+    display: block;
+    margin-top: 1em;
+    background-color: #136f63;
+    color: white;
+    padding: 1em;
+    border: 1px;
+    border-radius: 8px;
+}
+
+.select-form>input:hover {
+    background-color: #188079;
+}
+
+@media(max-width: 1150px) {
+    .top-part-of-search-block {
+        flex-direction: column;
+    }
+
+    .select-form {
+        width: max-content
+    }
+
+    .calendar {
+        margin-left: 0;
+    }
+}
+
+@media(max-width: 1150px) {
+    .calendar {
+        font-size: 14px;
+    }
+}
+
+@media(max-width: 1000px) {
+    .search-block {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .select-form {
+        width: min-content;
+    }
+
+    .user-card {
+        margin: 0;
+        margin-top: 1em;
+        font-size: 16px;
+        width: max-content;
+    }
+
+    .top-part-of-user-card {
+        flex-direction: row;
+    }
+}
+
+@media(max-width: 700px) {
+    .search-block {
+        margin-left: 1em;
+    }
+}
+
+@media(max-width: 400px) {
+    .select-form>p {
+        font-size: 14px;
+    }
+
+    .select-form>select {
+        font-size: 14px;
+    }
+
+    .select-form>select>option {
+        font-size: 14px;
+    }
+
+    .select-form>input {
+        font-size: 14px;
+    }
+}

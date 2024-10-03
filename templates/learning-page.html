@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обучение 1</title>
+    <link rel="icon" href="static/images/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/navigation-buttons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/data-pages.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/commands-list.css') }}">
+    <script src="{{ url_for('static', filename='scripts/commands-list.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/calendar.js') }}"></script>
+</head>
+<body>
+    <header role="banner">
+        <div class="left-info">
+            <div class="logo-image">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" onclick="location.href='/';">
+            </div>
+            <div class="page-title">><span>Обучение 1</span></div>
+        </div>
+        <div class="right-info">
+            <div class="user">Пучков А. И.</div>
+            <div class="user-photo">
+                <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="" onclick="myFunction()" class="dropbtn">
+                <div id="myDropdown" class="dropdown-content">
+                  <a href="/user-profile">Профиль</a>
+                  <a href="#">Выйти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main role="main">
+        <div class="nav-buttons">
+            <a href="/">Главная</a>
+            <a href="/personal">Управление персоналом</a>
+            <a href="/new_news">Добавить новость</a>
+            <a href="/new_event">Добавить событие</a>
+            <a href="/new_learning">Добавить обучение</a>
+        </div>
+        <div class="main-block">
+            <div class="information-block">
+                <h1>Обучение 1</h1>
+                <p style="margin-top: 1em;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam dignissimos minus totam ad sit accusamus ab modi mollitia corrupti rem, doloribus soluta cumque illum, necessitatibus quae illo, dolorum aliquid? Voluptatum?</p>
+            </div>
+        </div>
+        <div class="news-block">
+            <div class="search-bar">
+                <img src="static/images/search.png" onclick="createSortButtons()" class="sortbtn">
+                <div id="sortbtns" class="sortbtns-content">
+                    <a href="#">По названию</a>
+                    <a href="#">По дате</a>
+                    <a href="#">По автору</a>
+                </div>
+                <form action="search" class="search-form">
+                    <input type="text" name="news-search">
+                </form>
+                <img src="static/images/find-icon.png" alt="">
+            </div>
+            <div class="news">
+                <div onclick="location.href='news-page.html';" class="one-news">
+                    <div class="news-title">
+                        <p>Название</p>
+                    </div>
+                    <div class="news-text">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
+                    </div>
+                    <div class="bottom-part">
+                        <div class="news-date">
+                            <img src="static/images/calendar.png">
+                            <span>05.12.2024</span>
+                        </div>
+                        <div class="news-author">
+                            <img src="static/images/user.jpg" class="user-img">
+                            <span>Иванов А. А.</span>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="location.href='news-page.html';" class="one-news">
+                    <div class="news-title">
+                        <p>Название</p>
+                    </div>
+                    <div class="news-text">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
+                    </div>
+                    <div class="bottom-part">
+                        <div class="news-date">
+                            <img src="static/images/calendar.png">
+                            <span>05.12.2024</span>
+                        </div>
+                        <div class="news-author">
+                            <img src="static/images/user.jpg" class="user-img">
+                            <span>Иванов А. А.</span>
+                        </div>
+                    </div>
+                </div>
+                <div onclick="location.href='news-page.html';" class="one-news">
+                    <div class="news-title">
+                        <p>Название</p>
+                    </div>
+                    <div class="news-text">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
+                    </div>
+                    <div class="bottom-part">
+                        <div class="news-date">
+                            <img src="static/images/calendar.png">
+                            <span>05.12.2024</span>
+                        </div>
+                        <div class="news-author">
+                            <img src="static/images/user.jpg" class="user-img">
+                            <span>Иванов А. А.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer role="contentinfo">
+        <div class="top-information">
+            <span>☎ +7(999)999-99-99</span>
+            <span><img src="static/images/place-icon.png" class="place-icon-image">Москва, ул. Измайлова, д. 31</span>
+            <div class="footer-icons">
+                <img src="static/images/telegram-icon.png" onclick="location.href='https://web.telegram.org';">
+                <img src="static/images/vk-icon.png" onclick="location.href='https://vk.com/feed';">
+            </div>
+        </div>
+        <div class="bottom-information">
+            © Все права защищены "ГК Дороги России" 2024 г.
+        </div>
+    </footer>
+</body>
+</html>

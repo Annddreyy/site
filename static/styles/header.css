@@ -1,0 +1,129 @@
+header {
+    display: flex;
+    background-color: #0b4b3a;
+    border-radius: 8px;
+    height: 6em;
+    width: 100%;
+}
+
+.left-info {
+    width: 50%;
+    display: flex;
+}
+
+.right-info {
+    width: 50%;
+    display: flex;
+    text-align: right;
+    align-self: flex-end;
+}
+
+.logo-image {
+    margin: 1.5em;
+}
+
+.logo-image>img {
+    width: 3em;
+    height: 3em;
+    padding: 0.2em;
+    border-radius: 50%;
+    background-color: #22aaa1;
+    cursor: pointer;
+}
+
+.page-title {
+    width: 100%;
+    margin: 1em;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    border-radius: 16px;
+    font-size: 16px;
+    font-style: italic;
+    background-color: #136f63;
+}
+
+.user {
+    width: 100%;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+    padding: 1em;
+    font-size: 16px;
+    text-align: right;
+}
+
+.user-photo>img {
+    width: 4em;
+    margin: 1em;
+    border-radius: 50%;
+    padding: 0.2em;
+    cursor: pointer;
+    background-color: #22aaa1;
+}
+
+@media(max-width: 500px) {
+    header {
+        height: 4em;
+    }
+    .page-title {
+        margin: 0.3em;
+        font-size: 14px;
+    }
+
+    .logo-image>img {
+        width: 3em;
+        height: 3em;
+    }
+
+    .page-title {
+        margin: 0.3em;
+    }
+
+    .logo-image {
+        margin: 0.5em;
+    }
+    
+    .user {
+        padding: 0em;
+        margin-right: 0.5em;
+        font-size: 14px;
+    }
+
+    .user-photo {
+        padding: 0em;
+        height: 4em;
+    }
+
+    .user-photo>img {
+        width: 3em;
+        height: 3em;
+        margin: 0.3em;
+    }
+}
+
+@media(max-width: 375px) {
+    header {
+        height: 3em;
+    }
+    .page-title {
+        font-size: 12px;
+    }
+
+    .logo-image>img {
+        width: 2em;
+        height: 2em;
+    }
+    
+    .user {
+        font-size: 12px;
+    }
+
+    .user-photo {
+        height: 3em;
+    }
+
+    .user-photo>img {
+        width: 2em;
+        height: 2em;
+    }
+}

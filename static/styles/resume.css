@@ -1,0 +1,129 @@
+.resume-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.search-resume-bar {
+    background-color: #22aaa1;
+    display: flex;
+    justify-content: space-between;
+    height: 1.5em;
+    border-radius: 16px;
+    margin: 1em;
+    padding: 0.5em;
+    opacity: 0.85;
+}
+
+.all-resumes-block {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 1em;
+}
+
+.one-resume {
+    background-color: #136f63;
+    margin: 0.5em;
+    padding: 1em;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    width: max-content;
+}
+
+.one-resume>img {
+    width: 3em;
+    margin: 10px auto 20px;
+    display: block;
+}
+
+.one-resume>p {
+    margin-top: 0.5em;
+}
+
+.job-title-form {
+    background-color: #22aaa1;
+    margin-top: 1em;
+    padding: 1em;
+    border-radius: 8px;
+    width: max-content;
+}
+
+.job-title-form>select {
+    background-color: #136f63;
+    width: 100%;
+    padding: 0.5em;
+    color: white;
+    border: 1px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.job-title-form>select>option {
+    background-color: #178678;
+    padding: 1em;
+    color: white;
+    border: 1px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.job-title-form>select:hover {
+    background-color: #1b9c8b;
+}
+
+.job-title-form>input {
+    display: block;
+    margin-top: 1em;
+    background-color: #136f63;
+    color: white;
+    padding: 0.5em;
+    border: 1px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.job-title-form>input:hover {
+    background-color: #188079;
+}
+
+@media(max-width: 1250px) {
+    .all-resumes-block {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media(max-width: 1000px) {
+    .all-resumes-block {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media(max-width: 850px) {
+    .all-resumes-block {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 700px) {
+    .job-title-form {
+        margin-left: 1em;
+    }
+    .all-resumes-block {
+        grid-template-columns: repeat(4, 1fr);
+        margin-left: 1em;
+    }
+}
+
+@media(max-width: 600px) {
+    .all-resumes-block {
+        grid-template-columns: repeat(3, 1fr);
+        margin-left: 1em;
+    }
+}
+
+@media(max-width: 500px) {
+    .all-resumes-block {
+        grid-template-columns: repeat(2, 1fr);
+        margin-left: 1em;
+    }
+}
