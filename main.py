@@ -1,7 +1,8 @@
 import requests
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '8sjf892j0zk030qk-sj892jf9ajk9'
 
 BASE_URL = "http://127.0.0.1:2345/api/v1"
 
@@ -60,29 +61,30 @@ def event_page(event_id):
 @app.route('/new_news', methods=['GET', 'POST'])
 def new_news_page():
     if request.method == 'POST':
-        title = request.form.get('news-title')
-        description = request.form.get('news-text')
-        date = request.form.get('news-date')
-        image_path = ''
+        try:
+            title = request.form.get('news-title')
+            description = request.form.get('news-text')
+            date = request.form.get('news-date')
 
-        file = request.files['image']
+            file = request.files['image']
 
-        if file.filename.endswith('.jpg') or file.filename.endswith('.png'):
             image_path = file.filename
             file.save('static/company_files/news_images/' + image_path)
 
 
-        news = {
-            'title': title,
-            'description': description,
-            'date': date,
-            'author': 4, #TODO
-            'image_path': 'news_images/' + image_path
-        }
+            news = {
+                'title': title,
+                'description': description,
+                'date': date,
+                'author': 4, #TODO
+                'image_path': 'news_images/' + image_path
+            }
 
-        requests.post(url=f'{BASE_URL}/news', json=news)
+            requests.post(url=f'{BASE_URL}/news', json=news)
 
-        return redirect(url_for('new_news_page'))
+            return redirect(url_for('new_news_page')), flash('Новость успешно добавлена!')
+        except:
+            return redirect(url_for('new_news_page')), flash('При добавлении новости произошла ошибка!!')
 
     all_news = news_search()
 
@@ -95,31 +97,32 @@ def new_news_page():
 @app.route('/new_event', methods=['GET', 'POST'])
 def new_event_page():
     if request.method == 'POST':
-        title = request.form.get('event-title')
-        text = request.form.get('event-text')
-        date_start = request.form.get('event-date-start')
-        date_end = request.form.get('event-date-end')
-        event_type = request.form.get('event-type')
-        image_path = ''
+        try:
+            title = request.form.get('event-title')
+            text = request.form.get('event-text')
+            date_start = request.form.get('event-date-start')
+            date_end = request.form.get('event-date-end')
+            event_type = request.form.get('event-type')
 
-        file = request.files['image']
+            file = request.files['image']
 
-        if file.filename.endswith('.jpg') or file.filename.endswith('.png'):
             image_path = file.filename
             file.save('static/company_files/events/' + image_path)
 
-        event = {
-            'title': title,
-            'text': text,
-            'date_start': date_start,
-            'date_end': date_end,
-            'event_type': event_type,
-            'author': 4, #TODO
-            'image_path': 'events/' + image_path
-        }
+            event = {
+                'title': title,
+                'text': text,
+                'date_start': date_start,
+                'date_end': date_end,
+                'event_type': event_type,
+                'author': 4, #TODO
+                'image_path': 'events/' + image_path
+            }
 
-        requests.post(url=f'{BASE_URL}/events', json=event)
-        return redirect(url_for('new_event_page'))
+            requests.post(url=f'{BASE_URL}/events', json=event)
+            return redirect(url_for('new_event_page')), flash('Событие успешно добавлено!')
+        except:
+            return redirect(url_for('new_event_page')), flash('При добавлении события произошла ошибка!!')
 
     all_news = news_search()
     response = requests.get(f'{BASE_URL}/event_types').json()
@@ -140,8 +143,34 @@ def new_event_page():
     )
 
 
-@app.route('/new_learning')
+@app.route('/new_learning', methods=['GET', 'POST'])
 def new_learning_page():
+    if request.method == 'POST':
+        try:
+            title = request.form.get('learning-title')
+            text = request.form.get('learning-text')
+            date_start = request.form.get('learning-date-start')
+            date_end = request.form.get('learning-date-end')
+
+            file = request.files['image']
+
+            image_path = file.filename
+            file.save('static/company_files/learnings/' + image_path)
+
+            learning = {
+                'title': title,
+                'text': text,
+                'date_start': date_start,
+                'date_end': date_end,
+                'author': 4,
+                'image_path': 'learnings/' + image_path
+            }
+
+            requests.post(url=f'{BASE_URL}/learnings', json=learning)
+            return redirect(url_for('new_learning_page')), flash('Обучение успешно добавлено!')
+        except:
+            return redirect(url_for('new_learning_page')), flash('При добавлении обучения произошла ошибка!!')
+
     all_news = news_search()
 
     return render_template(

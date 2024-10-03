@@ -44,6 +44,9 @@
         <div class="main-block">
             <div class="form-block">
                 <h1>Добавление новости</h1>
+                {% for flash_message in get_flashed_messages(): %}
+                    <p style="margin-top: 1em; margin-bottom: 1em;">{{flash_message}}</p>
+                {% endfor %}
                 <form action="/new_news" class="new-news-form" method="POST" enctype="multipart/form-data">
                     <p>Название</p>
                     <input type="text" name="news-title" id="news-title" placeholder="Название" required>
