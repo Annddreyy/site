@@ -23,9 +23,9 @@
             <div class="page-title">><span>Профиль</span></div>
         </div>
         <div class="right-info">
-            <div class="user">Пучков А. И.</div>
+            <div class="user">{{user_information[1]}}</div>
             <div class="user-photo">
-                <img src="{{ url_for('static', filename='images/user.jpg') }}" alt="" onclick="myFunction()" class="dropbtn">
+                <img src="{{ url_for('static', filename='company_files/' + user_information[0]) }}" alt="" onclick="myFunction()" class="dropbtn">
                 <div id="myDropdown" class="dropdown-content">
                   <a href="/user-profile">Профиль</a>
                   <a href="/out">Выйти</a>
