@@ -46,17 +46,18 @@
         <div class="main-block">
             <div class="form-block">
                 <h1>Редактирование профиля</h1>
-                <form action="" class="edit-profile-form" onkeypress="return event.keyCode != 13;">
+                <form action="/user-profile" class="edit-profile-form" onkeypress="return event.keyCode != 13;"
+                method="POST" enctype="multipart/form-data" >
                     <p>Фото</p>
-                    <input type="image" src="{{ url_for('static', filename='company_files/' + user[6]) }}" id="user-image">
-                    <input type="file" name="user-image-file" id="image-file" style="width: min-content;">
+                    <img src="{{ url_for('static', filename='company_files/' + user[6]) }}" id="user-image">
+                    <input type="file" name="user-image-file" id="image-file" style="width: min-content;" accept=".png,.jpg">
                     <p>Фамилия</p>
                     <input type="text" name="surname" id="surname" placeholder="{{user[0]}}">
                     <p>Имя</p>
                     <input type="text" name="name" id="name" placeholder="{{user[1]}}">
                     <p>Отчество</p>
                     <input type="text" name="patronymic" id="patronymic" placeholder="{{user[2]}}">
-                    <p>Адресс проживания</p>
+                    <p>Адрес проживания</p>
                     <input type="text" name="adress" id="adress" placeholder="{{user[3]}}">
                     <p>Телефон</p>
                     <input type="text" name="phone" id="phone" placeholder="{{user[4]}}" pattern="\+\d\(\d{3}\)\d{3}-\d{2}-\d{2}">
