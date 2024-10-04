@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Пучков А. И.</title>
+    <title>{{user_information[1]}}</title>
     <link rel="icon" href="static/images/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
@@ -48,20 +48,20 @@
                 <h1>Редактирование профиля</h1>
                 <form action="" class="edit-profile-form" onkeypress="return event.keyCode != 13;">
                     <p>Фото</p>
-                    <input type="image" src="static/images/user.jpg" id="user-image">
+                    <input type="image" src="{{ url_for('static', filename='company_files/' + user[6]) }}" id="user-image">
                     <input type="file" name="user-image-file" id="image-file" style="width: min-content;">
                     <p>Фамилия</p>
-                    <input type="text" name="surname" id="surname" placeholder="Пучков" tabindex="1">
+                    <input type="text" name="surname" id="surname" placeholder="{{user[0]}}">
                     <p>Имя</p>
-                    <input type="text" name="name" id="name" placeholder="Андрей" tabindex="2">
+                    <input type="text" name="name" id="name" placeholder="{{user[1]}}">
                     <p>Отчество</p>
-                    <input type="text" name="patronymic" id="patronymic" placeholder="Игоревич">
+                    <input type="text" name="patronymic" id="patronymic" placeholder="{{user[2]}}">
                     <p>Адресс проживания</p>
-                    <input type="text" name="adress" id="adress" placeholder="г. Пенза, ул. Антонова">
+                    <input type="text" name="adress" id="adress" placeholder="{{user[3]}}">
                     <p>Телефон</p>
-                    <input type="text" name="phone" id="phone" placeholder="+7(999)999-99-99" pattern="\+\d\(\d{3}\)\d{3}-\d{2}-\d{2}">
+                    <input type="text" name="phone" id="phone" placeholder="{{user[4]}}" pattern="\+\d\(\d{3}\)\d{3}-\d{2}-\d{2}">
                     <p>Email</p>
-                    <input type="text" name="email" id="email" placeholder="mail@mail.ru" pattern="\w+@\w+\.\w+">
+                    <input type="text" name="email" id="email" placeholder="{{user[5]}}" pattern="\w+@\w+\.\w+">
                     <input type="submit" value="Сохранить изменения" id="edit-profile-button">
                 </form>
                 <script>
