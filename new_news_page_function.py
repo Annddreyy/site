@@ -1,5 +1,5 @@
 import requests
-from flask import render_template, Blueprint, request, redirect, url_for, flash
+from flask import render_template, Blueprint, request, redirect, url_for, flash, session
 
 from env_variables import BASE_URL
 from search_information import news_search
@@ -24,7 +24,7 @@ def new_news_page():
                 'title': title,
                 'description': description,
                 'date': date,
-                'author': 4, #TODO
+                'author': session['user_id'],
                 'image_path': 'news_images/' + image_path
             }
 

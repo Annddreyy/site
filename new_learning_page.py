@@ -1,5 +1,5 @@
 import requests
-from flask import render_template, Blueprint, request, redirect, url_for, flash
+from flask import render_template, Blueprint, request, redirect, url_for, flash, session
 
 from env_variables import BASE_URL
 from search_information import news_search
@@ -25,14 +25,15 @@ def new_learning_page():
                 'text': text,
                 'date_start': date_start,
                 'date_end': date_end,
-                'author': 4,
+                'author': session['user_id'],
                 'image_path': 'learnings/' + image_path
             }
 
             requests.post(url=f'{BASE_URL}/learnings', json=learning)
+
             return redirect(url_for('new_learning_page.new_learning_page')), flash('Обучение успешно добавлено!')
         except:
-            return redirect(url_for('new_learning_page.new_learning_page')), flash('При добавлении обучения произошла ошибка!!')
+            return redirect(url_for('new_learning_page.new_learning_page')), flash('При добавлении обучения произошла ошибка!')
 
     all_news = news_search()
 
