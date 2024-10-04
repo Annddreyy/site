@@ -1,22 +1,58 @@
+import hashlib
+
 import requests
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8sjf892j0zk030qk-sj892jf9ajk9'
+app.config['SECRET_KEY'] = 'a84fb054258d48a1114a2c7394af906efb56b519'
 
 BASE_URL = "http://127.0.0.1:2345/api/v1"
 
 
 @app.route('/')
 def main_page():
-    all_news = news_search()
-    all_events = events_search()
+    if 'user_id' in session:
+        print(session['user_id'])
+        all_news = news_search()
+        all_events = events_search()
+        print(session['is_admin'])
 
-    return render_template(
-        'index.html',
-        all_news=all_news,
-        all_events=all_events
-    )
+        return render_template(
+            'index.html',
+            all_news=all_news,
+            all_events=all_events,
+            is_admin=session['is_admin']
+        )
+
+    return redirect(url_for('authorization_page'))
+
+@app.route('/out')
+def out_page():
+    session.clear()
+    return redirect(url_for('main_page'))
+
+@app.route('/authorization', methods=['GET', 'POST'])
+def authorization_page():
+    if request.method == 'POST':
+        login = request.form.get('login')
+        password = request.form.get('password')
+        result = hashlib.sha256(password.encode()).hexdigest()
+
+        response = requests.get(f'{BASE_URL}/authorization').json()
+
+        for user in response:
+            if user['login'] == login and user['password'] == result:
+                session['user_id'] = user['id']
+
+                response = requests.get(f'{BASE_URL}/clients/{user['id']}').json()
+
+                session['is_admin'] = response[0]['role'] == 2
+
+                return redirect(url_for('main_page'))
+
+        return redirect(url_for('authorization_page'))
+
+    return render_template('authorization.html')
 
 
 @app.route('/news/<int:news_id>')
