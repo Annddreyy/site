@@ -1,5 +1,5 @@
 import requests
-from flask import render_template, Blueprint
+from flask import render_template, Blueprint, session
 
 from env_variables import BASE_URL
 from search_information import news_search
@@ -22,5 +22,6 @@ def event_page(event_id):
     return render_template(
         'event-page.html',
         event=event,
-        all_news=all_news
+        all_news=all_news,
+        is_admin=session['is_admin']
     )

@@ -40,7 +40,8 @@ def new_news_page():
 
             return render_template(
                 'new-news.html',
-                all_news=all_news
+                all_news=all_news,
+                is_admin=session['is_admin']
             )
         return abort(404)
 

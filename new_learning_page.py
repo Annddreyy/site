@@ -41,7 +41,8 @@ def new_learning_page():
 
             return render_template(
                 'new-learning.html',
-                all_news=all_news
+                all_news=all_news,
+                is_admin=session['is_admin']
             )
 
         return abort(404)

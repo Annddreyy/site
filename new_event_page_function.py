@@ -55,7 +55,8 @@ def new_event_page():
             return render_template(
                 'new-event.html',
                 all_news=all_news,
-                event_types=event_types
+                event_types=event_types,
+                is_admin=session['is_admin']
             )
         return abort(404)
 

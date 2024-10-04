@@ -23,7 +23,8 @@ def news_page(news_id):
         return render_template(
             'news-page.html',
             news=news,
-            all_news=all_news
+            all_news=all_news,
+            is_admin=session['is_admin']
         )
 
     return redirect(url_for('authorization_page.authorization_page'))

@@ -38,9 +38,11 @@
         <div class="nav-buttons">
             <a href="/">Главная</a>
             <a href="/personal">Управление персоналом</a>
-            <a href="/new_news">Добавить новость</a>
-            <a href="/new_event">Добавить событие</a>
-            <a href="/new_learning">Добавить обучение</a>
+            {% if is_admin: %}
+                <a href="/new_news">Добавить новость</a>
+                <a href="/new_event">Добавить событие</a>
+                <a href="/new_learning">Добавить обучение</a>
+            {% endif %}
         </div>
         <div class="main-block">
             <div class="form-block">
