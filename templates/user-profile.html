@@ -66,6 +66,20 @@
                     <input type="submit" value="Сохранить изменения" id="edit-profile-button">
                 </form>
                 <script>
+                    const imageFile = document.getElementById('image-file');
+                    const uploadedImage = document.getElementById('user-image');
+
+                    imageFile.addEventListener('change', function(event) {
+                        const file = event.target.files[0];
+
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            uploadedImage.src = e.target.result;
+                        }
+                        reader.readAsDataURL(file);
+                    });
+                </script>
+                <script>
                     document.querySelectorAll('.edit-profile-form input').forEach((input) => {
                         input.addEventListener('keypress', (e) => {
                             if (e.key === 'Enter') {

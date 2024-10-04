@@ -7,6 +7,10 @@
 }
 
 #user-image {
+    background-color: #22aaa1;
+    padding: 0.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
     width: 7em;
     border-radius: 50%;
     display: block;
