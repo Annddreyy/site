@@ -2,7 +2,7 @@ import requests
 from flask import render_template, Blueprint, session
 
 from env_variables import BASE_URL
-from search_information import news_search
+from search_information import news_search, get_top_bar_information
 
 event_page_blueprint = Blueprint('event_page', __name__)
 
@@ -19,9 +19,12 @@ def event_page(event_id):
         response['image_path']
     ]
 
+    user_information = get_top_bar_information(session['user_id'])
+
     return render_template(
         'event-page.html',
         event=event,
         all_news=all_news,
-        is_admin=session['is_admin']
+        is_admin=session['is_admin'],
+        user_information=user_information
     )

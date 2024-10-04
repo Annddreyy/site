@@ -2,7 +2,7 @@ import requests
 from flask import render_template, Blueprint, session, redirect, url_for
 
 from env_variables import BASE_URL
-from search_information import news_search
+from search_information import news_search, get_top_bar_information
 
 news_page_blueprint = Blueprint('news_page', __name__)
 
@@ -20,11 +20,14 @@ def news_page(news_id):
             response['image_path']
         ]
 
+        user_information = get_top_bar_information(session['user_id'])
+
         return render_template(
             'news-page.html',
             news=news,
             all_news=all_news,
-            is_admin=session['is_admin']
+            is_admin=session['is_admin'],
+            user_information=user_information
         )
 
     return redirect(url_for('authorization_page.authorization_page'))

@@ -2,7 +2,7 @@ import requests
 from flask import render_template, Blueprint, request, redirect, url_for, flash, session, abort
 
 from env_variables import BASE_URL
-from search_information import news_search
+from search_information import news_search, get_top_bar_information
 
 new_event_page_blueprint = Blueprint('new_event_page', __name__)
 
@@ -52,11 +52,14 @@ def new_event_page():
                     ]
                 )
 
+            user_information = get_top_bar_information(session['user_id'])
+
             return render_template(
                 'new-event.html',
                 all_news=all_news,
                 event_types=event_types,
-                is_admin=session['is_admin']
+                is_admin=session['is_admin'],
+                user_information=user_information
             )
         return abort(404)
 

@@ -2,7 +2,7 @@ import requests
 from flask import render_template, Blueprint, request, redirect, url_for, flash, session, abort
 
 from env_variables import BASE_URL
-from search_information import news_search
+from search_information import news_search, get_top_bar_information
 
 new_news_page_blueprint = Blueprint('new_news_page', __name__)
 
@@ -38,10 +38,13 @@ def new_news_page():
 
             all_news = news_search()
 
+            user_information = get_top_bar_information(session['user_id'])
+
             return render_template(
                 'new-news.html',
                 all_news=all_news,
-                is_admin=session['is_admin']
+                is_admin=session['is_admin'],
+                user_information=user_information
             )
         return abort(404)
 

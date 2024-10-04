@@ -64,3 +64,8 @@ def events_search():
         )
 
     return events
+
+def get_top_bar_information(client_id):
+    client = requests.get(f'{BASE_URL}/clients/{client_id}').json()[0]
+
+    return [client['photo'], client['FIO']]
