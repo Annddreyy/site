@@ -1,5 +1,5 @@
 import requests
-from flask import render_template, Blueprint, request, redirect, url_for, flash
+from flask import render_template, Blueprint, request, redirect, url_for, flash, session
 
 from env_variables import BASE_URL
 from search_information import news_search
@@ -27,16 +27,18 @@ def new_event_page():
                 'date_start': date_start,
                 'date_end': date_end,
                 'event_type': event_type,
-                'author': 4, #TODO
+                'author': session['user_id'],
                 'image_path': 'events/' + image_path
             }
 
             requests.post(url=f'{BASE_URL}/events', json=event)
+
             return redirect(url_for('new_event_page.new_event_page')), flash('Событие успешно добавлено!')
         except:
             return redirect(url_for('new_event_page.new_event_page')), flash('При добавлении события произошла ошибка!!')
 
     all_news = news_search()
+
     response = requests.get(f'{BASE_URL}/event_types').json()
 
     event_types = []
