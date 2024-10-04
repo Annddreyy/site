@@ -11,6 +11,9 @@
 <body>
     <div class="autorization-form-container">
         <h2>Авторизация</h2>
+        {% for message in get_flashed_messages(): %}
+            <p style="margin-top: 1em; margin-bottom: 1em; color: red;">{{message}}</p>
+        {% endfor %}
         <form action="/authorization" class="autorization-form" method="POST">
             <input type="text" name="login" id="login" placeholder="Логин">
             <input type="password" name="password" id="password" placeholder="Пароль">

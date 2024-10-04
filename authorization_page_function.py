@@ -1,7 +1,7 @@
 import hashlib
 
 import requests
-from flask import Blueprint, session, redirect, url_for, request, render_template
+from flask import Blueprint, session, redirect, url_for, request, render_template, flash
 
 from env_variables import BASE_URL
 
@@ -26,6 +26,6 @@ def authorization_page():
 
                 return redirect(url_for('main_page.main_page'))
 
-        return redirect(url_for('authorization_page'))
+        return redirect(url_for('authorization_page.authorization_page')), flash('Неверный логин или пароль!')
 
     return render_template('authorization.html')
