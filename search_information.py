@@ -3,6 +3,7 @@ from flask import request
 
 from env_variables import BASE_URL
 
+
 def news_search():
     response = requests.get(f'{BASE_URL}/news').json()
 

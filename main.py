@@ -2,6 +2,7 @@ import requests
 from flask import Flask, render_template
 
 from authorization_page_function import authorization_page_blueprint
+from env_variables import SECRET_KEY
 from event_page_function import event_page_blueprint
 from main_page_function import main_page_blueprint
 from new_event_page_function import new_event_page_blueprint
@@ -10,8 +11,6 @@ from new_news_page_function import new_news_page_blueprint
 from news_page_function import news_page_blueprint
 from out_page_function import out_page_blueprint
 from search_information import news_search
-
-from env_variables import SECRET_KEY
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY

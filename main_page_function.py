@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, session, redirect, url_for
+
 from search_information import news_search, events_search
 
 main_page_blueprint = Blueprint('main_page', __name__)

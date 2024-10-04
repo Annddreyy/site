@@ -1,7 +1,7 @@
 import hashlib
 
-from flask import Blueprint, session, redirect, url_for, request, render_template
 import requests
+from flask import Blueprint, session, redirect, url_for, request, render_template
 
 from env_variables import BASE_URL
 
