@@ -11,6 +11,9 @@
 
 .news {
     margin-top: 4em;
+    background-color: #22aaa1;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
 }
 
 .search-form {
