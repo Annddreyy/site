@@ -43,33 +43,60 @@
         </div>
         <div class="search-block">
             <div class="select-form-block">
-                <form action="" class="select-form">
+                <form action="/personal" class="select-form" method="POST">
                     <p>Выбор подразделения</p>
                     <select name="department" id="department">
-                        <option value="1">Первое подразделение</option>
-                        <option value="2">Второе подразделение</option>
-                        <option value="3">Третье подразделение</option>
+                        {% for department in departments: %}
+                            <option value="{{department[0]}}">{{department[1]}}</option>
+                        {% endfor %}
                     </select>
                     <p>Выбор сотрудника</p>
                     <select name="client" id="client">
-                        <option value="1">Первый сотрудник</option>
-                        <option value="2">Второй сотрудник</option>
-                        <option value="3">Третий сотрудник</option>
                     </select>
-                    <input type="submit" value="Найти">
+                    <input type="submit" value="Найти" id="find-client-button">
                 </form>
+                <script>
+                    var department_select = document.getElementById("department");
+                    var client_select = document.getElementById("client");
+
+                    var all_clients = [];
+
+                    {% for department in departments: %}
+                        all_clients[{{department[0]}}] = []
+                        {% for client in clients: %}
+                            {% if client[9] == department[1]: %}
+                                all_clients[{{department[0]}}].push([{{client[0]}}, "{{client[1]}}"]);
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+                    client_select.disabled = false;
+                    for (var i = 0; i < all_clients[{{departments[0][0]}}].length; i++){
+                        client_select.innerHTML += '<option value="'+all_clients[{{departments[0][0]}}][i][0]+'">'+all_clients[{{departments[0][0]}}][i][1]+'</option>';
+                    }
+
+                    department_select.onchange = function() {
+                        client_select.innerHTML = "";
+                        department_id = this.value;
+                        for (var i = 0; i < all_clients[department_id].length; i++){
+                            client_select.innerHTML += '<option value="'+all_clients[{{departments[0][0]}}][i][0]+'">'+all_clients[department_id][i][1]+'</option>';
+                        }
+                    }
+                </script>
             </div>
-            <div class="user-card">
-                <div class="top-part-of-user-card">
-                    <h2>Пучков Андрей Игоревич</h2>
-                    <img src="static/images/user.jpg">
-                </div>
-                <p>Рабочий телефон: +7(999)999-99-99</p>
-                <p>Начальник: Петров Петр Петрович</p>
-                <p>Электронная почта: mail@mail.ru</p>
-                <p>Кабинет: 101</p>
-                <p>Дата рождения: 12.12.2000</p>
-                <p>Дополнительная информация: отсутсвует</p>
+            <div class="user-card" id="user-card">
+                {% if client != "Undefined": %}
+                    <div class="top-part-of-user-card">
+                        <h2>{{client[1]}} {{client[2]}} {{client[3]}}</h2>
+                        <img src="{{ url_for('static', filename='company_files/' + client[4]) }}">
+                    </div>
+                    <p>Рабочий телефон: {{client[6]}}</p>
+                    <p>Начальник: Петров Петр Петрович</p>
+                    <p>Электронная почта: {{client[7]}}</p>
+                    <p>Кабинет: {{client[9]}}</p>
+                    <p>Дата рождения: {{client[8]}}</p>
+                    <p>Дополнительная информация: {{client[10]}}</p>
+                {% endif %}
             </div>
         </div>
         <div class="news-block">

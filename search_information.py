@@ -1,3 +1,5 @@
+from http.client import responses
+
 import requests
 from flask import request
 
@@ -65,7 +67,45 @@ def events_search():
 
     return events
 
+def get_departments():
+    response = requests.get(f'{BASE_URL}/departments').json()
+
+    departments = []
+    for department in response:
+        departments.append(
+            [
+                department['id'],
+                department['title']
+            ]
+        )
+
+    return departments
+
 def get_top_bar_information(client_id):
     client = requests.get(f'{BASE_URL}/clients/{client_id}').json()[0]
 
     return [client['photo'], f'{client['surname']} {client['name'][0]}. {client['patronymic'][0]}.']
+
+def clients_search():
+    response = requests.get(f'{BASE_URL}/clients').json()
+
+    clients = []
+    for client in response:
+        clients.append(
+            [
+                client['id'],
+                client['FIO'],
+                client['photo'],
+                client['adress'],
+                client['phone'],
+                client['email'],
+                client['birthday_date'],
+                client['cabinet'],
+                client['dop_information'],
+                client['department'],
+                client['job'],
+                client['role']
+            ]
+        )
+
+    return clients

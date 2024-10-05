@@ -10,6 +10,7 @@ from new_learning_page import new_learning_page_blueprint
 from new_news_page_function import new_news_page_blueprint
 from news_page_function import news_page_blueprint
 from out_page_function import out_page_blueprint
+from personal_page_function import personal_page_blueprint
 from user_profile_page_function import user_profile_page_blueprint
 from search_information import news_search
 
@@ -27,6 +28,7 @@ app.register_blueprint(new_news_page_blueprint)
 app.register_blueprint(new_event_page_blueprint)
 app.register_blueprint(new_learning_page_blueprint)
 app.register_blueprint(user_profile_page_blueprint)
+app.register_blueprint(personal_page_blueprint)
 
 
 @app.route('/resume')
