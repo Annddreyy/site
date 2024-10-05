@@ -16,6 +16,7 @@ def personal_page():
     if request.method == 'POST':
         client_id = request.form.get('client')
         new_client_json = requests.get(f'{BASE_URL}/clients/{client_id}').json()[0]
+        print(client_id)
 
         new_client = [
             new_client_json['id'],

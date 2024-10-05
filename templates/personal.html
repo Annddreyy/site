@@ -66,6 +66,7 @@
                         {% for client in clients: %}
                             {% if client[9] == department[1]: %}
                                 all_clients[{{department[0]}}].push([{{client[0]}}, "{{client[1]}}"]);
+                                alert({{client[0]}});
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
@@ -79,7 +80,7 @@
                         client_select.innerHTML = "";
                         department_id = this.value;
                         for (var i = 0; i < all_clients[department_id].length; i++){
-                            client_select.innerHTML += '<option value="'+all_clients[{{departments[0][0]}}][i][0]+'">'+all_clients[department_id][i][1]+'</option>';
+                            client_select.innerHTML += '<option value="'+all_clients[department_id][i][0]+'">'+all_clients[department_id][i][1]+'</option>';
                         }
                     }
                 </script>
