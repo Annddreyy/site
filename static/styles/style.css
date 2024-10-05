@@ -23,6 +23,7 @@ main {
     display: grid;
     grid-template-columns: 1.5fr 6fr 3fr;
     grid-template-rows: 1fr;
+    min-height: calc(100vh - 250px);
 }
 
 ::placeholder {
