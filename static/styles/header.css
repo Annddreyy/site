@@ -32,6 +32,8 @@ header {
 }
 
 .page-title {
+    display: flex;
+    align-items: center;
     width: 100%;
     margin: 1em;
     margin-top: 1.5em;
@@ -44,6 +46,9 @@ header {
 }
 
 .user {
+    display: flex;
+    justify-content: right;
+    align-items: center;
     width: 100%;
     margin-top: 1.5em;
     margin-bottom: 1.5em;
@@ -53,6 +58,8 @@ header {
 }
 
 .user-photo>img {
+    display: flex;
+    align-items: center;
     width: 4em;
     margin: 1em;
     border-radius: 50%;

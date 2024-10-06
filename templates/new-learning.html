@@ -107,12 +107,14 @@
             <div class="news">
                 {% for news in all_news: %}
                     <div onclick="location.href='/news/{{news[0]}}';" class="one-news">
-                        <img src="{{ url_for('static', filename='company_files/' + news[5]) }}" class="one-news-image">
-                        <div class="news-title">
-                            <p>{{news[1]}}</p>
-                        </div>
-                        <div class="news-text">
-                            <p>{{news[2]}}</p>
+                        <div class="top-part">
+                            <img src="{{ url_for('static', filename='company_files/' + news[5]) }}" class="one-news-image">
+                            <div class="news-title">
+                                <p>{{news[1]}}</p>
+                            </div>
+                            <div class="news-text">
+                                <p>{{news[2]}}</p>
+                            </div>
                         </div>
                         <div class="bottom-part">
                             <div class="news-date">

@@ -59,6 +59,9 @@
 }
 
 .one-news {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #136f63;
     margin: 1em;
     padding: 1em;
@@ -67,17 +70,18 @@
     cursor: pointer;
 }
 
-.one-news>.one-news-image {
+.top-part>.one-news-image {
     width: 100%;
     margin-bottom: 1em;
     border-radius: 4px;
 }
 
-.news-title {
+
+.top-part>.news-title {
     font-style: italic;
 }
 
-.news-text {
+.top-part>.news-text {
     padding-top: 1em;
     padding-bottom: 1em;
     text-align: justify;
