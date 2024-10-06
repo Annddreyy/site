@@ -11,7 +11,9 @@
 
 .news {
     margin-top: 4em;
-    background-color: #22aaa1;
+    margin-left: 1em;
+    margin-right: 1em;
+    background-color: #04312e;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
 }
@@ -86,6 +88,8 @@
     display: flex;
     justify-content: space-between;
     font-size: 14px;
+    background-color: #5c974f;
+    padding: 1em;
 }
 
 .user-img {
@@ -99,4 +103,31 @@
 
 .news-date>span,.news-author>span{
     vertical-align: middle;
+}
+
+@media(max-width: 1200px) {
+    .news {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .search-bar {
+        width: 40%;
+    }
+}
+
+@media(max-width: 900px) {
+    .news {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media(max-width: 600px) {
+    .news {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .search-bar {
+        width: 80%;
+    }
 }

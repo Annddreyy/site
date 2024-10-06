@@ -15,7 +15,7 @@ body {
     -o-background-size: cover;
     background-size: cover;
     color: white;
-    background-color: #438f72;
+    background: linear-gradient(90deg, rgba(59, 214, 113, 0) 14.83%, rgba(59, 214, 113, 0.24) 99.48%), rgb(19, 26, 38);
 }
 
 
@@ -30,7 +30,7 @@ main {
     color: rgb(48, 48, 48);
 }
 
-@media(max-width: 700px) {
+@media(max-width: 1200px) {
     main {
         display: grid;
         grid-template-rows: auto 1fr auto;

@@ -1,7 +1,7 @@
 .nav-buttons {
+    background-color: #04312e;
     display: flex;
     flex-direction: column;
-    background: #22aaa1;
     align-items: center;
     margin: 1em;
     padding: 1em;
