@@ -43,18 +43,19 @@
             <a href="/resume">Подбор персонала</a>
         </div>
         <div class="resume-block">
-            <form action="" class="job-title-form">
+            <form action="/resume" class="job-title-form" method="POST">
                 <select name="job-title" id="job-title">
                     {% for job in all_jobs: %}
                         <option value="{{ job[0] }}">{{ job[1] }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit" value="Сортировать">
+                <input type="submit" value="Фильтровать">
+                <input type="submit" value="Удалить фильтр" formaction="/reset_resume_filter" formmethod="GET">
             </form>
             <div class="all-resumes-block">
                 {% for resume in all_resumes: %}
                     <div class="one-resume">
-                        <a href="{{ url_for('static', filename='company_files/' + resume[3]) }}" download="proposed_file_name">
+                        <a href="{{ url_for('static', filename='company_files/' + resume[3]) }}" download>
                             <img src="{{ url_for('static', filename='images/document-icon.png') }}">
                             <p>{{ resume[1] }}</p>
                         </a>
