@@ -19,8 +19,6 @@ from user_profile_page_function import user_profile_page_blueprint
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
-BASE_URL = "http://127.0.0.1:2345/api/v1"
-
 app.register_blueprint(main_page_blueprint)
 app.register_blueprint(out_page_blueprint)
 app.register_blueprint(authorization_page_blueprint)
