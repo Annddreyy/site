@@ -3,7 +3,6 @@ from flask import request
 
 from env_variables import BASE_URL
 
-
 def news_search():
     response = requests.get(f'{BASE_URL}/news').json()
 
@@ -16,7 +15,6 @@ def news_search():
 
     if not sort_type:
         sort_type = ""
-
 
     all_news = []
     for news in response:

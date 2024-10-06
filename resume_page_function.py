@@ -1,5 +1,5 @@
 import requests
-from flask import render_template, Blueprint, request, session, url_for
+from flask import render_template, Blueprint, request, session, url_for, abort
 from werkzeug.utils import redirect
 
 from env_variables import BASE_URL
@@ -9,31 +9,37 @@ resume_page_blueprint = Blueprint('resume_page', __name__)
 
 @resume_page_blueprint.route('/resume', methods=['GET', 'POST'])
 def resume_page():
-    all_resumes = get_resumes()
-    all_news = news_search()
-    all_jobs = get_jobs()
+    if 'user_id' in session:
+        if session['is_admin']:
+            all_resumes = get_resumes()
+            all_news = news_search()
+            all_jobs = get_jobs()
 
-    if request.method == 'POST':
-        job_id = request.form.get('job-title')
-        response = requests.get(f'{BASE_URL}/jobs/{job_id}').json()['title']
-        new_resumes = []
-        for resume in all_resumes:
-            if resume[2] == response:
-                new_resumes.append(resume)
+            if request.method == 'POST':
+                job_id = request.form.get('job-title')
+                response = requests.get(f'{BASE_URL}/jobs/{job_id}').json()['title']
+                new_resumes = []
+                for resume in all_resumes:
+                    if resume[2] == response:
+                        new_resumes.append(resume)
 
-        session['resume'] = new_resumes
+                session['resume'] = new_resumes
 
-        return redirect(url_for('resume_page.resume_page'))
+                return redirect(url_for('resume_page.resume_page'))
 
-    if 'resume' in session:
-        all_resumes = session['resume']
+            if 'resume' in session:
+                all_resumes = session['resume']
 
-    return render_template(
-        'resume.html',
-        all_resumes=all_resumes,
-        all_news=all_news,
-        all_jobs = all_jobs
-    )
+            return render_template(
+                'resume.html',
+                all_resumes=all_resumes,
+                all_news=all_news,
+                all_jobs = all_jobs
+            )
+        else:
+            return abort(404)
+    else:
+        return redirect(url_for('authorization_page.authorization_page'))
 
 @resume_page_blueprint.route('/reset_resume_filter', methods=['GET'])
 def reset_resume_filter():

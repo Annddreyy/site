@@ -49,7 +49,7 @@ def user_profile_page():
 
         user_information = get_top_bar_information(session['user_id'])
 
-        response = requests.get(f'{BASE_URL}/clients/{session['user_id']}').json()[0]
+        response = requests.get(f'{BASE_URL}/clients/{session['user_id']}').json()
 
         user = [
             response['surname'],
