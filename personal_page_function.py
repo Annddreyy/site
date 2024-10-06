@@ -19,6 +19,25 @@ def personal_page():
             client_id = request.form.get('client')
             new_client_json = requests.get(f'{BASE_URL}/clients/{client_id}').json()
 
+            client_department = new_client_json['department']
+            client_department_id = -1
+
+
+            for department in departments:
+                if department[1] == client_department:
+                    client_department_id = department[0]
+                    break
+
+            if client_department_id != -1:
+                response = requests.get(f'{BASE_URL}/supervisor/{client_department_id}').json()
+                client_supervisor = response['supervisor']
+            else:
+                client_supervisor = "Не найден"
+
+            if client_supervisor == (f'{new_client_json['surname']} {new_client_json['name'][0]}. '
+                                     f'{new_client_json['patronymic'][0]}.'):
+                client_supervisor = "Этот сотрудник является главой департамента"
+
             new_client = [
                 new_client_json['id'],
                 new_client_json['surname'],
@@ -30,7 +49,8 @@ def personal_page():
                 new_client_json['email'],
                 new_client_json['birthday_date'],
                 new_client_json['cabinet'],
-                new_client_json['dop_information']
+                new_client_json['dop_information'],
+                client_supervisor
             ]
 
             session['client_card'] = new_client
