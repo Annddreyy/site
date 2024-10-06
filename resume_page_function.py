@@ -3,7 +3,7 @@ from flask import render_template, Blueprint, request, session, url_for, abort
 from werkzeug.utils import redirect
 
 from env_variables import BASE_URL
-from search_information import news_search, get_jobs, get_resumes
+from search_information import news_search, get_jobs, get_resumes, get_top_bar_information
 
 resume_page_blueprint = Blueprint('resume_page', __name__)
 
@@ -30,11 +30,14 @@ def resume_page():
             if 'resume' in session:
                 all_resumes = session['resume']
 
+            user_information = get_top_bar_information(session['user_id'])
+
             return render_template(
                 'resume.html',
                 all_resumes=all_resumes,
                 all_news=all_news,
-                all_jobs = all_jobs
+                all_jobs = all_jobs,
+                user_information=user_information
             )
         else:
             return abort(404)
