@@ -47,7 +47,8 @@ def personal_page():
             departments=departments,
             all_news=all_news,
             clients=clients,
-            client=client
+            client=client,
+            is_admin=session['is_admin']
         )
     else:
         return redirect(url_for('authorization_page.authorization_page'))

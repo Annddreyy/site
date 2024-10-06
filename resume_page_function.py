@@ -37,7 +37,8 @@ def resume_page():
                 all_resumes=all_resumes,
                 all_news=all_news,
                 all_jobs = all_jobs,
-                user_information=user_information
+                user_information=user_information,
+                is_admin=session['is_admin']
             )
         else:
             return abort(404)

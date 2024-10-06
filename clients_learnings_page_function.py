@@ -13,5 +13,6 @@ def clients_learnings_page():
     return render_template(
         'clients-learnings.html',
         all_news=all_news,
-        user_information=user_information
+        user_information=user_information,
+        is_admin=session['is_admin']
     )

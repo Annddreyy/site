@@ -42,7 +42,9 @@
             <a href="/clients-events">События сотрудников</a>
             <a href="/clients-learnings">Календарь обучений</a>
             <a href="/clients-weekends">Календарь временного отсутствия</a>
-            <a href="/resume">Подбор персонала</a>
+            {% if is_admin: %}
+                <a href="/resume">Подбор персонала</a>
+            {% endif %}
         </div>
         <div class="search-block">
             <div class="top-part-of-search-block">

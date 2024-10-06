@@ -13,5 +13,6 @@ def clients_weekends_page():
     return render_template(
         'clients-weekends.html',
         all_news=all_news,
-        user_information=user_information
+        user_information=user_information,
+        is_admin=session['is_admin']
     )
