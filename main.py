@@ -11,6 +11,7 @@ from new_news_page_function import new_news_page_blueprint
 from news_page_function import news_page_blueprint
 from out_page_function import out_page_blueprint
 from personal_page_function import personal_page_blueprint
+from resume_page_function import resume_page_blueprint
 from user_profile_page_function import user_profile_page_blueprint
 from search_information import news_search
 
@@ -29,31 +30,7 @@ app.register_blueprint(new_event_page_blueprint)
 app.register_blueprint(new_learning_page_blueprint)
 app.register_blueprint(user_profile_page_blueprint)
 app.register_blueprint(personal_page_blueprint)
-
-
-@app.route('/resume')
-def resume_page():
-    response = requests.get(f'{BASE_URL}/resume').json()
-
-    all_resumes = []
-    for resume in response:
-        all_resumes.append(
-            [
-                resume['id'],
-                resume['author'],
-                resume['job_title'],
-                resume['file_path']
-            ]
-        )
-
-    all_news = news_search()
-
-    return render_template(
-        'resume.html',
-        all_resumes=all_resumes,
-        all_news=all_news
-    )
-
+app.register_blueprint(resume_page_blueprint)
 
 @app.route('/clients-events')
 def clients_events_page():

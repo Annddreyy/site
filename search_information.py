@@ -1,5 +1,3 @@
-from http.client import responses
-
 import requests
 from flask import request
 
@@ -44,7 +42,6 @@ def news_search():
         all_news.sort(key=lambda x: x[indexes[sort_type]])
 
     return all_news
-
 
 def events_search():
     response = requests.get(f'{BASE_URL}/events').json()
@@ -109,3 +106,33 @@ def clients_search():
         )
 
     return clients
+
+def get_jobs():
+    response = requests.get(f'{BASE_URL}/jobs').json()
+
+    jobs = []
+    for job in response:
+        jobs.append(
+            [
+                job['id'],
+                job['title']
+            ]
+        )
+
+    return jobs
+
+def get_resumes():
+    response = requests.get(f'{BASE_URL}/resume').json()
+
+    all_resumes = []
+    for resume in response:
+        all_resumes.append(
+            [
+                resume['id'],
+                resume['author'],
+                resume['job_title'],
+                resume['file_path']
+            ]
+        )
+
+    return all_resumes

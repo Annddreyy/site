@@ -22,22 +22,26 @@
 
 .one-resume {
     background-color: #136f63;
-    margin: 0.5em;
+    width: calc(100% - 3em);
     padding: 1em;
+    margin: 0.5em;
     border-radius: 8px;
     display: flex;
     flex-direction: column;
-    width: max-content;
+    align-items: center;
 }
 
-.one-resume>img {
+.one-resume>a>img {
     width: 3em;
     margin: 10px auto 20px;
     display: block;
+    text-decoration: none;
 }
 
-.one-resume>p {
+.one-resume>a>p {
     margin-top: 0.5em;
+    color: white;
+    text-decoration: none;
 }
 
 .job-title-form {

@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/clients-data.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/commands-list.css') }}">
     <script src="{{ url_for('static', filename='scripts/commands-list.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/calendar.js') }}"></script>
 </head>
 <body>
     <header role="banner">
@@ -46,17 +45,19 @@
         <div class="resume-block">
             <form action="" class="job-title-form">
                 <select name="job-title" id="job-title">
-                    <option value="1">Работа 1</option>
-                    <option value="2">Работа 2</option>
-                    <option value="3">Работа 3</option>
+                    {% for job in all_jobs: %}
+                        <option value="{{ job[0] }}">{{ job[1] }}</option>
+                    {% endfor %}
                 </select>
                 <input type="submit" value="Сортировать">
             </form>
             <div class="all-resumes-block">
                 {% for resume in all_resumes: %}
                     <div class="one-resume">
-                        <img src="static/images/document-icon.png">
-                        <p>{{ resume[1] }}</p>
+                        <a href="{{ url_for('static', filename='company_files/' + resume[3]) }}" download="proposed_file_name">
+                            <img src="{{ url_for('static', filename='images/document-icon.png') }}">
+                            <p>{{ resume[1] }}</p>
+                        </a>
                     </div>
                 {% endfor %}
             </div>
