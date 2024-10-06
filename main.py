@@ -1,7 +1,9 @@
-import requests
-from flask import Flask, render_template
+from flask import Flask
 
 from authorization_page_function import authorization_page_blueprint
+from clients_events_page_function import clients_events_page_blueprint
+from clients_learnings_page_function import clients_learnings_page_blueprint
+from clients_weekends_page_function import clients_weekends_page_blueprint
 from env_variables import SECRET_KEY
 from event_page_function import event_page_blueprint
 from main_page_function import main_page_blueprint
@@ -13,7 +15,6 @@ from out_page_function import out_page_blueprint
 from personal_page_function import personal_page_blueprint
 from resume_page_function import resume_page_blueprint
 from user_profile_page_function import user_profile_page_blueprint
-from search_information import news_search
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -31,35 +32,9 @@ app.register_blueprint(new_learning_page_blueprint)
 app.register_blueprint(user_profile_page_blueprint)
 app.register_blueprint(personal_page_blueprint)
 app.register_blueprint(resume_page_blueprint)
-
-@app.route('/clients-events')
-def clients_events_page():
-    all_news = news_search()
-
-    return render_template(
-        'clients-events.html',
-        all_news=all_news
-    )
-
-
-@app.route('/clients-learnings')
-def clients_learnings_page():
-    all_news = news_search()
-
-    return render_template(
-        'clients-learnings.html',
-        all_news=all_news
-    )
-
-
-@app.route('/clients-weekends')
-def clients_weekends_page():
-    all_news = news_search()
-
-    return render_template(
-        'clients-weekends.html',
-        all_news=all_news
-    )
+app.register_blueprint(clients_events_page_blueprint)
+app.register_blueprint(clients_learnings_page_blueprint)
+app.register_blueprint(clients_weekends_page_blueprint)
 
 if __name__ == '__main__':
     app.run(debug=True)
