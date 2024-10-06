@@ -23,7 +23,7 @@ def authorization_page():
 
                     response = requests.get(f'{BASE_URL}/clients/{user['id']}').json()
 
-                    session['is_admin'] = response[0]['role'] == 2
+                    session['is_admin'] = response['role'] == 2
 
                     return redirect(url_for('main_page.main_page'))
 

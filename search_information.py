@@ -79,7 +79,7 @@ def get_departments():
     return departments
 
 def get_top_bar_information(client_id):
-    client = requests.get(f'{BASE_URL}/clients/{client_id}').json()[0]
+    client = requests.get(f'{BASE_URL}/clients/{client_id}').json()
 
     return [client['photo'], f'{client['surname']} {client['name'][0]}. {client['patronymic'][0]}.']
 
