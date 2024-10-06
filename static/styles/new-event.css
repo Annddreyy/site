@@ -12,7 +12,7 @@
 }
 
 textarea {
-    width: 100%;
+    width: 50%;
     resize: vertical;
     background-color: #22aaa1;
     border: 1px;
@@ -61,4 +61,20 @@ textarea {
     border-radius: 16px;
     margin-top: 1em;
     color: whitesmoke
+}
+
+@media(max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+    .new-event-form {
+        width: 80%;
+    }
+    #event-image {
+        padding: 0.5em;
+        width: 100%;
+    }
+    #event-title,#event-date-start,#event-date-end,textarea {
+        width: 100%;
+    }
 }

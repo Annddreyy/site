@@ -12,7 +12,7 @@
 }
 
 textarea {
-    width: 100%;
+    width: 50%;
     resize: vertical;
     background-color: #22aaa1;
     border: 1px;
@@ -51,4 +51,20 @@ textarea {
     border-radius: 16px;
     margin-top: 1em;
     color: whitesmoke
+}
+
+@media(max-width: 600px) {
+    h1 {
+        font-size: 24px;
+    }
+    .new-learning-form {
+        width: 80%;
+    }
+    #learning-image {
+        padding: 0.5em;
+        width: 100%;
+    }
+    #learning-title,#learning-date-start,#learning-date-end,textarea {
+        width: 100%;
+    }
 }
