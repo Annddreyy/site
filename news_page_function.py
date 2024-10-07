@@ -9,7 +9,7 @@ news_page_blueprint = Blueprint('news_page', __name__)
 @news_page_blueprint.route('/news/<int:news_id>')
 def news_page(news_id):
     if 'user_id' in session:
-        response = requests.get(f'{BASE_URL}/news/{news_id}').json()[0]
+        response = requests.get(f'{BASE_URL}/news/{news_id}').json()
 
         all_news = news_search()
 
