@@ -26,7 +26,7 @@ function updateCalendar() {
         let date = 1;
 
         // Загружаем данные о событиях с API
-        fetch('http://localhost:2345/api/v1/events') // Замените на реальный URL API
+        fetch('https://roads-of-russia-api.vercel.app/api/v1/events') // Замените на реальный URL API
             .then(response => response.json())
             .then(events => {
                 const eventsByDate = {};
