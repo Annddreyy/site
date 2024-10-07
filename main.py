@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 from authorization_page_function import authorization_page_blueprint
 from clients_events_page_function import clients_events_page_blueprint
@@ -34,5 +34,13 @@ app.register_blueprint(clients_events_page_blueprint)
 app.register_blueprint(clients_learnings_page_blueprint)
 app.register_blueprint(clients_weekends_page_blueprint)
 
+@app.errorhandler(404)
+def error_404_page(error):
+    return render_template('error-page.html')
+
+@app.errorhandler(500)
+def error_500_page(error):
+    return render_template('error-page.html')
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

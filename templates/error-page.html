@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница не найдена</title>
+    <link rel="icon" href="static/images/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+</head>
+<body>
+    <header role="banner">
+        <div class="left-info">
+            <div class="logo-image">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" onclick="location.href='/';">
+            </div>
+            <div class="page-title">><span>Страница не найдена</span></div>
+        </div>
+    </header>
+    <main role="main">
+        Вы попали на эту страницу потому что такой страницы нет, или у Вас нет прав на доступ к этй странице
+    </main>
+    <footer role="contentinfo">
+        <div class="top-information">
+            <span>☎ +7(999)999-99-99</span>
+            <span><img src="{{ url_for('static', filename='images/place-icon.png') }}" class="place-icon-image">Москва, ул. Измайлова, д. 31</span>
+            <div class="footer-icons">
+                <img src="{{ url_for('static', filename='images/telegram-icon.png') }}" onclick="location.href='https://web.telegram.org';">
+                <img src="{{ url_for('static', filename='images/vk-icon.png') }}" onclick="location.href='https://vk.com/feed';">
+            </div>
+        </div>
+        <div class="bottom-information">
+            © Все права защищены "ГК Дороги России" 2024 г.
+        </div>
+    </footer>
+</body>
+</html>
