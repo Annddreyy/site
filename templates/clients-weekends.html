@@ -49,21 +49,46 @@
         <div class="search-block">
             <div class="top-part-of-search-block">
                 <div class="select-form-block">
-                    <form action="" class="select-form">
+                    <form action="/clients-weekends" class="select-form" method="GET">
                         <p>Выбор подразделения</p>
                         <select name="department" id="department">
-                            <option value="1">Первое подразделение</option>
-                            <option value="2">Второе подразделение</option>
-                            <option value="3">Третье подразделение</option>
+                            {% for department in departments: %}
+                                <option value="{{department[0]}}">{{department[1]}}</option>
+                            {% endfor %}
                         </select>
                         <p>Выбор сотрудника</p>
                         <select name="client" id="client">
-                            <option value="1">Первый сотрудник</option>
-                            <option value="2">Второй сотрудник</option>
-                            <option value="3">Третий сотрудник</option>
                         </select>
-                        <input type="submit" value="Найти">
+                        <input type="submit" value="Найти" id="find-client-button">
                     </form>
+                    <script>
+                        var department_select = document.getElementById("department");
+                        var client_select = document.getElementById("client");
+
+                        var all_clients = [];
+
+                        {% for department in departments: %}
+                            all_clients[{{department[0]}}] = []
+                            {% for client in clients: %}
+                                {% if client[9] == department[1]: %}
+                                    all_clients[{{department[0]}}].push([{{client[0]}}, "{{client[1]}}"]);
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+
+                        client_select.disabled = false;
+                        for (var i = 0; i < all_clients[{{departments[0][0]}}].length; i++){
+                            client_select.innerHTML += '<option value="'+all_clients[{{departments[0][0]}}][i][0]+'">'+all_clients[{{departments[0][0]}}][i][1]+'</option>';
+                        }
+
+                        department_select.onchange = function() {
+                            client_select.innerHTML = "";
+                            department_id = this.value;
+                            for (var i = 0; i < all_clients[department_id].length; i++){
+                                client_select.innerHTML += '<option value="'+all_clients[department_id][i][0]+'">'+all_clients[department_id][i][1]+'</option>';
+                            }
+                        }
+                    </script>
                 </div>
                 <div class="calendar">
                     <div class="calendar-header">
@@ -87,18 +112,6 @@
                             <tbody id="calendarDays"></tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-            <div class="bottom-part-of-search-block">
-                <div class="weekends-information">
-                    <h2>Пучков Андрей Игоревич</h2>
-                    <ul>
-                        <li>отсутствует с 15.12.2024 по 20.12.2024 по причине командировки</li>
-                        <li>отсутствует с 15.12.2024 по 20.12.2024 по причине командировки</li>
-                        <li>отсутствует с 15.12.2024 по 20.12.2024 по причине командировки</li>
-                        <li>отсутствует с 15.12.2024 по 20.12.2024 по причине командировки</li>
-                        <li>отсутствует с 15.12.2024 по 20.12.2024 по причине командировки</li>
-                    </ul>
                 </div>
             </div>
         </div>
