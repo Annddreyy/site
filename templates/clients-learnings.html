@@ -12,10 +12,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/clients-data.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/calendar.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/learnings.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/events.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/commands-list.css') }}">
     <script src="{{ url_for('static', filename='scripts/commands-list.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/calendar.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/calendar-clients.js') }}"></script>
 </head>
 <body>
     <header role="banner">
@@ -48,7 +48,7 @@
         </div>
         <div class="search-block">
             <div class="top-part-of-search-block">
-                <form action="/clients-events" class="select-form" method="GET">
+                <form action="/clients-learnings" class="select-form" method="GET">
                     <p>Выбор подразделения</p>
                     <select name="department" id="department">
                         {% for department in departments: %}

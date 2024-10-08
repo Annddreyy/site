@@ -35,10 +35,12 @@ function updateCalendar() {
                 const params = new URLSearchParams(url);
                 const clientID = Number(params.get('client'));
                 const filteredEvents = events.filter(event =>
-                    event.clients.includes(clientID) && event.event_type !== "Обучение"
+                    event.clients.includes(clientID) && (
+                        document.URL.includes('clients-events') ? event.event_type !== "Обучение" :
+                        document.URL.includes('clients-learnings') ? event.event_type === "Обучение" : true
+                    )
                 );
                 filteredEvents.forEach(event => {
-                    alert(event.event_type);
                     const eventDateStart = new Date(event.date_start);
                     const eventDateEnd = new Date(event.date_end);
                     while (eventDateStart <= eventDateEnd) {

@@ -1,18 +1,54 @@
-from flask import Blueprint, render_template, session
+from flask import Blueprint, render_template, session, request, redirect, url_for
 
-from search_information import news_search, get_top_bar_information
+from search_information import news_search, get_top_bar_information, get_departments, clients_search, events_search
 
 clients_learnings_page_blueprint = Blueprint('clients_learnings_page', __name__)
 
 @clients_learnings_page_blueprint.route('/clients-learnings')
 def clients_learnings_page():
-    all_news = news_search()
+    if 'user_id' in session:
+        all_news = news_search()
 
-    user_information = get_top_bar_information(session['user_id'])
+        user_information = get_top_bar_information(session['user_id'])
 
-    return render_template(
-        'clients-learnings.html',
-        all_news=all_news,
-        user_information=user_information,
-        is_admin=session['is_admin']
-    )
+        departments = get_departments()
+        clients = clients_search()
+
+        all_events = events_search()
+
+        new_events = []
+        for event in all_events:
+            if event[3] == 'Обучение':
+                new_events.append(event)
+
+        all_events = new_events
+
+        client_id = request.args.get('client')
+        if client_id:
+            client_id = int(client_id)
+            events = []
+            for event in all_events:
+                if client_id in event[9]:
+                    events.append(event)
+
+            return render_template(
+                'clients-learnings.html',
+                all_news=all_news,
+                user_information=user_information,
+                is_admin=session['is_admin'],
+                departments=departments,
+                clients=clients,
+                all_events=events
+            )
+
+        return render_template(
+            'clients-learnings.html',
+            all_news=all_news,
+            user_information=user_information,
+            is_admin=session['is_admin'],
+            departments=departments,
+            clients=clients,
+            all_events=all_events
+        )
+
+    return redirect(url_for('authorization_page.authorization_page'))

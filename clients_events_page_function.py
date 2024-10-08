@@ -16,12 +16,19 @@ def clients_events_page():
 
         all_events = events_search()
 
+        new_events = []
+        for event in all_events:
+            if event[3] != 'Обучение':
+                new_events.append(event)
+
+        all_events = new_events
+
         client_id = request.args.get('client')
         if client_id:
             client_id = int(client_id)
             events = []
             for event in all_events:
-                if client_id in event[9] and event[3] != 'Обучение':
+                if client_id in event[9]:
                     events.append(event)
 
             return render_template(
