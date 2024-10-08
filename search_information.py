@@ -56,7 +56,8 @@ def events_search():
                 event['photo'],
                 event['image_path'],
                 event['date_start'],
-                event['date_end']
+                event['date_end'],
+                event['clients']
             ]
         )
 

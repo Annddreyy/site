@@ -26,7 +26,7 @@ function updateCalendar() {
         let date = 1;
 
         // Загружаем данные о событиях с API
-        fetch('https://roads-of-russia-andrey2211.amvera.io/api/v1/events') // Замените на реальный URL API
+        fetch('https://roads-of-russia-andrey2211.amvera.io/api/v1/events')
             .then(response => response.json())
             .then(events => {
                 const eventsByDate = {};
@@ -124,11 +124,11 @@ function displayEventsForDay(day, eventsByDate) {
                 </div>
                 <div class="event-bottom-part">
                     <div class="event-date">
-                        <img src="${window.location.pathname}static/images/calendar.png">
+                        <img src="static/images/calendar.png">
                         <span>с ${event.date_start} до ${event.date_end}</span>
                     </div>
                     <div class="event-author">
-                        <img src="${window.location.pathname}static/company_files/${event.photo}" class="user-img">
+                        <img src="static/company_files/${event.photo}" class="user-img">
                         <span>${event.author}</span>
                     </div>
                 </div>

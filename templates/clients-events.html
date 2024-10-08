@@ -48,7 +48,7 @@
         </div>
         <div class="search-block">
             <div class="top-part-of-search-block">
-                <form action="/clients-events" class="select-form" method="POST">
+                <form action="/clients-events" class="select-form" method="GET">
                     <p>Выбор подразделения</p>
                     <select name="department" id="department">
                         {% for department in departments: %}
@@ -112,99 +112,30 @@
                     </div>
                 </div>
             </div>
-            <div class="bottom-part-of-search-block">
-                <div class="all-events">
-                    <div onclick="location.href='event-page.html';" class="one-event">
-                        <div class="event-title">
-                            <p>Название</p>
-                        </div>
-                        <div class="event-text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
+            <div class="all-events">
+                {% for event in all_events: %}
+                    <div onclick="location.href='/events/{{event[0]}}';" class="one-event">
+                        <div class="event-top-part">
+                            <div class="event-title">
+                                <p>{{event[1]}}</p>
+                                <p style="margin-top: 12px;">{{event[3]}}</p>
+                            </div>
+                            <div class="event-text">
+                                <p>{{event[2]}}</p>
+                            </div>
                         </div>
                         <div class="event-bottom-part">
                             <div class="event-date">
-                                <img src="static/images/calendar.png">
-                                <span>05.12.2024</span>
+                                <img src="{{ url_for('static', filename='images/calendar.png') }}">
+                                <span>с {{event[7]}} до {{event[8]}}</span>
                             </div>
                             <div class="event-author">
-                                <img src="static/images/user.jpg" class="user-img">
-                                <span>Иванов А. А.</span>
+                                <img src="{{ url_for('static', filename='company_files/' + event[5]) }}" class="user-img">
+                                <span>{{event[4]}}</span>
                             </div>
                         </div>
                     </div>
-                    <div onclick="location.href='event-page.html';" class="one-event">
-                        <div class="event-title">
-                            <p>Название</p>
-                        </div>
-                        <div class="event-text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
-                        </div>
-                        <div class="event-bottom-part">
-                            <div class="event-date">
-                                <img src="static/images/calendar.png">
-                                <span>05.12.2024</span>
-                            </div>
-                            <div class="event-author">
-                                <img src="static/images/user.jpg" class="user-img">
-                                <span>Иванов А. А.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div onclick="location.href='event-page.html';" class="one-event">
-                        <div class="event-title">
-                            <p>Название</p>
-                        </div>
-                        <div class="event-text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
-                        </div>
-                        <div class="event-bottom-part">
-                            <div class="event-date">
-                                <img src="static/images/calendar.png">
-                                <span>05.12.2024</span>
-                            </div>
-                            <div class="event-author">
-                                <img src="static/images/user.jpg" class="user-img">
-                                <span>Иванов А. А.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div onclick="location.href='event-page.html';" class="one-event">
-                        <div class="event-title">
-                            <p>Название</p>
-                        </div>
-                        <div class="event-text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
-                        </div>
-                        <div class="event-bottom-part">
-                            <div class="event-date">
-                                <img src="static/images/calendar.png">
-                                <span>05.12.2024</span>
-                            </div>
-                            <div class="event-author">
-                                <img src="static/images/user.jpg" class="user-img">
-                                <span>Иванов А. А.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div onclick="location.href='event-page.html';" class="one-event">
-                        <div class="event-title">
-                            <p>Название</p>
-                        </div>
-                        <div class="event-text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
-                        </div>
-                        <div class="event-bottom-part">
-                            <div class="event-date">
-                                <img src="static/images/calendar.png">
-                                <span>05.12.2024</span>
-                            </div>
-                            <div class="event-author">
-                                <img src="static/images/user.jpg" class="user-img">
-                                <span>Иванов А. А.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="news-block">
