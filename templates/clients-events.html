@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/events.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/commands-list.css') }}">
     <script src="{{ url_for('static', filename='scripts/commands-list.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/calendar.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/calendar-client-events.js') }}"></script>
 </head>
 <body>
     <header role="banner">
@@ -48,23 +48,46 @@
         </div>
         <div class="search-block">
             <div class="top-part-of-search-block">
-                <div class="select-form-block">
-                    <form action="" class="select-form">
-                        <p>Выбор подразделения</p>
-                        <select name="department" id="department">
-                            <option value="1">Первое подразделение</option>
-                            <option value="2">Второе подразделение</option>
-                            <option value="3">Третье подразделение</option>
-                        </select>
-                        <p>Выбор сотрудника</p>
-                        <select name="client" id="client">
-                            <option value="1">Первый сотрудник</option>
-                            <option value="2">Второй сотрудник</option>
-                            <option value="3">Третий сотрудник</option>
-                        </select>
-                        <input type="submit" value="Найти">
-                    </form>
-                </div>
+                <form action="/clients-events" class="select-form" method="POST">
+                    <p>Выбор подразделения</p>
+                    <select name="department" id="department">
+                        {% for department in departments: %}
+                            <option value="{{department[0]}}">{{department[1]}}</option>
+                        {% endfor %}
+                    </select>
+                    <p>Выбор сотрудника</p>
+                    <select name="client" id="client">
+                    </select>
+                    <input type="submit" value="Найти" id="find-client-button">
+                </form>
+                <script>
+                    var department_select = document.getElementById("department");
+                    var client_select = document.getElementById("client");
+
+                    var all_clients = [];
+
+                    {% for department in departments: %}
+                        all_clients[{{department[0]}}] = []
+                        {% for client in clients: %}
+                            {% if client[9] == department[1]: %}
+                                all_clients[{{department[0]}}].push([{{client[0]}}, "{{client[1]}}"]);
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+                    client_select.disabled = false;
+                    for (var i = 0; i < all_clients[{{departments[0][0]}}].length; i++){
+                        client_select.innerHTML += '<option value="'+all_clients[{{departments[0][0]}}][i][0]+'">'+all_clients[{{departments[0][0]}}][i][1]+'</option>';
+                    }
+
+                    department_select.onchange = function() {
+                        client_select.innerHTML = "";
+                        department_id = this.value;
+                        for (var i = 0; i < all_clients[department_id].length; i++){
+                            client_select.innerHTML += '<option value="'+all_clients[department_id][i][0]+'">'+all_clients[department_id][i][1]+'</option>';
+                        }
+                    }
+                </script>
                 <div class="calendar">
                     <div class="calendar-header">
                         <button onclick="prevMonth()">&#10094;</button>

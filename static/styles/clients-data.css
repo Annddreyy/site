@@ -7,10 +7,11 @@
 }
 
 .select-form {
-    background-color: #22aaa1;
+    background-color: #04312e;
     margin-top: 1em;
     padding: 1em;
     border-radius: 8px;
+    height: min-content;
 }
 
 .select-form>p {
@@ -25,6 +26,7 @@
     border: 1px;
     border-radius: 8px;
     font-size: 16px;
+    width: min-content;
 }
 
 .select-form>select>option {
@@ -47,11 +49,38 @@
     color: white;
     padding: 1em;
     border: 1px;
+    font-size: 16px;
     border-radius: 8px;
 }
 
 .select-form>input:hover {
     background-color: #188079;
+}
+
+@media (max-width: 1500px) {
+    main {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: 1fr;
+    }
+    .nav-buttons {
+        padding: 0;
+        margin: 0;
+        margin-bottom: 1em;
+        flex-direction: row;
+    }
+    .nav-buttons>a {
+        width: 100%;
+        margin: 0;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5em;
+    }
+    .top-part-of-search-block {
+        margin-left: 1em;
+    }
 }
 
 @media(max-width: 1150px) {
@@ -65,11 +94,6 @@
 
     .calendar {
         margin-left: 0;
-    }
-}
-
-@media(max-width: 1150px) {
-    .calendar {
         font-size: 14px;
     }
 }
@@ -81,14 +105,14 @@
     }
 
     .select-form {
-        width: min-content;
+        width: 80%;
     }
 
     .user-card {
         margin: 0;
         margin-top: 1em;
         font-size: 16px;
-        width: max-content;
+        width: 80%;
     }
 
     .top-part-of-user-card {
@@ -100,22 +124,47 @@
     .search-block {
         margin-left: 1em;
     }
+    .select-form>select {
+        font-size: 14px;
+    }
+    .select-form>input {
+        font-size: 14px;
+    }
+    .select-form>select>option {
+        font-size: 14px;
+        min-height: 14px;
+    }
+}
+
+@media(max-width: 600px) {
+    .select-form {
+        width: calc(100% - 3em);
+        margin-right: 1em;
+    }
+    .select-form>select {
+        width: 100%;
+        text-overflow: ellipsis;
+    }
 }
 
 @media(max-width: 400px) {
     .select-form>p {
         font-size: 14px;
     }
-
     .select-form>select {
         font-size: 14px;
     }
-
     .select-form>select>option {
         font-size: 14px;
     }
-
     .select-form>input {
         font-size: 14px;
+    }
+    h2 {
+        font-size: 14px;
+        margin-right: 0.5em;
+    }
+    .user-card {
+        font-size: 12px;
     }
 }
