@@ -14,7 +14,6 @@ from news_page_function import news_page_blueprint
 from out_page_function import out_page_blueprint
 from personal_page_function import personal_page_blueprint
 from resume_page_function import resume_page_blueprint
-from search_information import news_search, get_top_bar_information
 from user_profile_page_function import user_profile_page_blueprint
 
 app = Flask(__name__)

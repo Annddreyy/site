@@ -48,23 +48,46 @@
         </div>
         <div class="search-block">
             <div class="top-part-of-search-block">
-                <div class="select-form-block">
-                    <form action="" class="select-form">
-                        <p>Выбор подразделения</p>
-                        <select name="department" id="department">
-                            <option value="1">Первое подразделение</option>
-                            <option value="2">Второе подразделение</option>
-                            <option value="3">Третье подразделение</option>
-                        </select>
-                        <p>Выбор сотрудника</p>
-                        <select name="client" id="client">
-                            <option value="1">Первый сотрудник</option>
-                            <option value="2">Второй сотрудник</option>
-                            <option value="3">Третий сотрудник</option>
-                        </select>
-                        <input type="submit" value="Найти">
-                    </form>
-                </div>
+                <form action="/clients-events" class="select-form" method="GET">
+                    <p>Выбор подразделения</p>
+                    <select name="department" id="department">
+                        {% for department in departments: %}
+                            <option value="{{department[0]}}">{{department[1]}}</option>
+                        {% endfor %}
+                    </select>
+                    <p>Выбор сотрудника</p>
+                    <select name="client" id="client">
+                    </select>
+                    <input type="submit" value="Найти" id="find-client-button">
+                </form>
+                <script>
+                    var department_select = document.getElementById("department");
+                    var client_select = document.getElementById("client");
+
+                    var all_clients = [];
+
+                    {% for department in departments: %}
+                        all_clients[{{department[0]}}] = []
+                        {% for client in clients: %}
+                            {% if client[9] == department[1]: %}
+                                all_clients[{{department[0]}}].push([{{client[0]}}, "{{client[1]}}"]);
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+
+                    client_select.disabled = false;
+                    for (var i = 0; i < all_clients[{{departments[0][0]}}].length; i++){
+                        client_select.innerHTML += '<option value="'+all_clients[{{departments[0][0]}}][i][0]+'">'+all_clients[{{departments[0][0]}}][i][1]+'</option>';
+                    }
+
+                    department_select.onchange = function() {
+                        client_select.innerHTML = "";
+                        department_id = this.value;
+                        for (var i = 0; i < all_clients[department_id].length; i++){
+                            client_select.innerHTML += '<option value="'+all_clients[department_id][i][0]+'">'+all_clients[department_id][i][1]+'</option>';
+                        }
+                    }
+                </script>
                 <div class="calendar">
                     <div class="calendar-header">
                         <button onclick="prevMonth()">&#10094;</button>
@@ -89,63 +112,30 @@
                     </div>
                 </div>
             </div>
-            <div class="bottom-part-of-search-block">
-                <div class="all-learnings">
-                    <div onclick="location.href='learning-page.html';" class="one-learning">
-                        <div class="learning-title">
-                            <p>Название</p>
-                        </div>
-                        <div class="learning-text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
-                        </div>
-                        <div class="learning-bottom-part">
-                            <div class="learning-date">
-                                <img src="static/images/calendar.png">
-                                <span>05.12.2024</span>
+            <div class="all-events">
+                {% for event in all_events: %}
+                    <div onclick="location.href='/events/{{event[0]}}';" class="one-event">
+                        <div class="event-top-part">
+                            <div class="event-title">
+                                <p>{{event[1]}}</p>
+                                <p style="margin-top: 12px;">{{event[3]}}</p>
                             </div>
-                            <div class="learning-author">
-                                <img src="static/images/user.jpg" class="user-img">
-                                <span>Иванов А. А.</span>
+                            <div class="event-text">
+                                <p>{{event[2]}}</p>
                             </div>
                         </div>
-                    </div>
-                    <div onclick="location.href='learning-page.html';" class="one-learning">
-                        <div class="learning-title">
-                            <p>Название</p>
-                        </div>
-                        <div class="learning-text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
-                        </div>
-                        <div class="learning-bottom-part">
-                            <div class="learning-date">
-                                <img src="static/images/calendar.png">
-                                <span>05.12.2024</span>
+                        <div class="event-bottom-part">
+                            <div class="event-date">
+                                <img src="{{ url_for('static', filename='images/calendar.png') }}">
+                                <span>с {{event[7]}} до {{event[8]}}</span>
                             </div>
-                            <div class="learning-author">
-                                <img src="static/images/user.jpg" class="user-img">
-                                <span>Иванов А. А.</span>
+                            <div class="event-author">
+                                <img src="{{ url_for('static', filename='company_files/' + event[5]) }}" class="user-img">
+                                <span>{{event[4]}}</span>
                             </div>
                         </div>
                     </div>
-                    <div onclick="location.href='learning-page.html';" class="one-learning">
-                        <div class="learning-title">
-                            <p>Название</p>
-                        </div>
-                        <div class="learning-text">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum aspernatur inventore similique debitis ratione ipsam quod iste totam recusandae, atque sit, quibusdam asperiores unde optio, incidunt fuga possimus quos ipsa!</p>
-                        </div>
-                        <div class="learning-bottom-part">
-                            <div class="learning-date">
-                                <img src="static/images/calendar.png">
-                                <span>05.12.2024</span>
-                            </div>
-                            <div class="learning-author">
-                                <img src="static/images/user.jpg" class="user-img">
-                                <span>Иванов А. А.</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
         <div class="news-block">

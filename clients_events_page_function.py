@@ -21,7 +21,7 @@ def clients_events_page():
             client_id = int(client_id)
             events = []
             for event in all_events:
-                if client_id in event[9]:
+                if client_id in event[9] and event[3] != 'Обучение':
                     events.append(event)
 
             return render_template(

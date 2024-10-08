@@ -35,9 +35,10 @@ function updateCalendar() {
                 const params = new URLSearchParams(url);
                 const clientID = Number(params.get('client'));
                 const filteredEvents = events.filter(event =>
-                    event.clients.includes(clientID)
+                    event.clients.includes(clientID) && event.event_type !== "Обучение"
                 );
                 filteredEvents.forEach(event => {
+                    alert(event.event_type);
                     const eventDateStart = new Date(event.date_start);
                     const eventDateEnd = new Date(event.date_end);
                     while (eventDateStart <= eventDateEnd) {
@@ -115,7 +116,6 @@ function displayEventsForDay(day, eventsByDate) {
 
     if (eventsByDate[day]) {
         eventsByDate[day].forEach(event => {
-
             const eventItem = document.createElement('div');
             eventItem.className = 'one-event';
             eventItem.innerHTML = `
