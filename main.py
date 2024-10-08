@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, session, redirect, url_for
 
 from authorization_page_function import authorization_page_blueprint
 from clients_events_page_function import clients_events_page_blueprint
@@ -14,6 +14,7 @@ from news_page_function import news_page_blueprint
 from out_page_function import out_page_blueprint
 from personal_page_function import personal_page_blueprint
 from resume_page_function import resume_page_blueprint
+from search_information import news_search, get_top_bar_information
 from user_profile_page_function import user_profile_page_blueprint
 
 app = Flask(__name__)
@@ -36,11 +37,15 @@ app.register_blueprint(clients_weekends_page_blueprint)
 
 @app.errorhandler(404)
 def error_404_page(error):
-    return render_template('error-page.html')
+    if 'user_id' in session:
+        return render_template('error-page.html')
+    return redirect(url_for('authorization_page.authorization_page'))
 
 @app.errorhandler(500)
 def error_500_page(error):
-    return render_template('error-page.html')
+    if 'user_id' in session:
+        return render_template('error-page.html')
+    return redirect(url_for('authorization_page.authorization_page'))
 
 if __name__ == '__main__':
     app.run(debug=False)

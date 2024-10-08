@@ -1,0 +1,20 @@
+.error-page-button {
+    text-decoration: none;
+    padding: 1em;
+    background-color: #136f63;
+    color: #fff;
+    margin-top: 1em;
+    width: max-content;
+}
+
+.error-information-block {
+    display: flex;
+    flex-direction: column;
+    margin: 3em;
+}
+
+@media(max-width: 400px) {
+    .error-information-block {
+        margin: 1em;
+    }
+}

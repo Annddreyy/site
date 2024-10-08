@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/header.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/error-page.css') }}">
 </head>
 <body>
     <header role="banner">
@@ -18,8 +19,11 @@
             <div class="page-title">><span>Страница не найдена</span></div>
         </div>
     </header>
-    <main role="main">
-        Вы попали на эту страницу потому что такой страницы нет, или у Вас нет прав на доступ к этй странице
+    <main role="main" style="grid-template-columns: 1fr;">
+        <div class="error-information-block">
+            <p>Вы попали на эту страницу потому что такой страницы нет, или у Вас нет прав на доступ к этй странице</p>
+            <a href="/" class="error-page-button">Вернуться на главную страницу</a>
+        </div>
     </main>
     <footer role="contentinfo">
         <div class="top-information">
