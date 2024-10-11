@@ -29,32 +29,28 @@ function updateCalendar() {
         fetch('https://roads-of-russia-andrey2211.amvera.io/api/v1/weekends')
             .then(response => response.json())
             .then(weekends => {
+                const weekendsByDate = {};
                 const url = window.location.href;
                 const params = new URLSearchParams(url);
                 const clientID = Number(params.get('client'));
-                const filteredEvents = events.filter(event =>
-                    event.clients.includes(clientID) && (
-                        document.URL.includes('clients-events') ? event.event_type !== "Обучение" :
-                        document.URL.includes('clients-learnings') ? event.event_type === "Обучение" : true
-                    )
+                const filteredWeekends = weekends.filter(weekend =>
+                    weekend.client == clientID
                 );
-                filteredEvents.forEach(event => {
-                    const eventDateStart = new Date(event.date_start);
-                    const eventDateEnd = new Date(event.date_end);
-                    while (eventDateStart <= eventDateEnd) {
-                        const dayStart = eventDateStart.getDate();
-                        const monthStart = eventDateStart.getMonth();
-                        const yearStart = eventDateStart.getFullYear();
+                filteredWeekends.forEach(weekend => {
+                    const weekendDateStart = new Date(weekend.date_start);
+                    const weekendDateEnd = new Date(weekend.date_end);
+                    while (weekendDateStart <= weekendDateEnd) {
+                        const dayStart = weekendDateStart.getDate();
+                        const monthStart = weekendDateStart.getMonth();
+                        const yearStart = weekendDateStart.getFullYear();
                         if (monthStart === currentMonth && yearStart == currentYear) {
-                            if (eventsByDate[dayStart]) {
-                                eventsByDate[dayStart]++;
-                                eventsArray[dayStart].push(event);
+                            if (weekendsByDate[dayStart]) {
+                                weekendsByDate[dayStart]++;
                             } else {
-                                eventsByDate[dayStart] = 1;
-                                eventsArray[dayStart] = [event];
+                                weekendsByDate[dayStart] = 1;
                             }
                         }
-                        eventDateStart.setDate(eventDateStart.getDate() + 1);
+                        weekendDateStart.setDate(weekendDateStart.getDate() + 1);
                     }
                 });
 
@@ -73,16 +69,16 @@ function updateCalendar() {
 
                             cell.style.borderRadius = "50%";
 
-                            if (eventsByDate[date] === 1) {
+                            if (weekendsByDate[date] === 1) {
                                 cell.style.backgroundColor = '#0d3b66';
                                 cell.style.fontWeight = "bolder";
                             }
-                            else if (eventsByDate[date] >= 2 && eventsByDate[date] <= 4) {
+                            else if (weekendsByDate[date] >= 2 && weekendsByDate[date] <= 4) {
                                 cell.style.backgroundColor = '#faf0ca';
                                 cell.style.color = "black";
                                 cell.style.fontWeight = "bolder";
                             }
-                            else if (eventsByDate[date] > 4) {
+                            else if (weekendsByDate[date] > 4) {
                                 cell.style.backgroundColor = '#f4d35e';
                                 cell.style.color = "black";
                                 cell.style.fontWeight = "bolder";
@@ -91,11 +87,6 @@ function updateCalendar() {
                             if (nowMonth === currentMonth && nowYear === currentYear && date === nowDay) {
                                 cell.style.backgroundColor = '#86B32D';
                             }
-
-                            cell.addEventListener('click', () => {
-                                displayEventsForDay(cell.innerText, eventsArray);
-                            });
-
 
                             row.appendChild(cell);
                             date++;
